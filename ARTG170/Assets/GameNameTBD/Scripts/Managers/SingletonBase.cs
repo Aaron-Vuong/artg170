@@ -8,6 +8,7 @@ public abstract class SingletonBase<T> :  MonoBehaviour where T : SingletonBase<
     private static SingletonBase<T> _instance;
     private void Awake()
     {
+        /*
         if (_instance != null)
         {
             Destroy(gameObject);
@@ -16,5 +17,6 @@ public abstract class SingletonBase<T> :  MonoBehaviour where T : SingletonBase<
 
         _instance = this;
         DontDestroyOnLoad(gameObject);
+        */
     }
 }

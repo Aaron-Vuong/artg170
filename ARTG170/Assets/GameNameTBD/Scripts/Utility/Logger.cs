@@ -9,16 +9,18 @@ public class Logger : MonoBehaviour
     [SerializeField]
     bool _showLogs = true;
 
-    // Loggers should be persistent across scenes.
-    private void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
-    public void Log(string message)
+    public void Log(object message)
     {
         if (_showLogs)
         {
             Debug.Log($"{name}: {message}");
+        }
+    }
+    public void LogError(object message)
+    {
+        if (_showLogs)
+        {
+            Debug.LogError($"{name}: {message}");
         }
     }
 }
