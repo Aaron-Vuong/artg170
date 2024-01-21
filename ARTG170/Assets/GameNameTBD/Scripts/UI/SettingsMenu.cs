@@ -24,4 +24,15 @@ public class SettingsMenu : MenuManager
         UnityEngine.Assertions.Assert.IsNotNull(_btnBack);
         _btnBack.onClick.AddListener(_uiManager.GoBackToLastMenu);
     }
+
+    private void Update()
+    {
+        // On User Escape, we go to the settings.
+        /*
+        if (Input.GetKeyDown(KeyCode.Escape) && _uiManager.getCurrentMenu() == GameMenu.Settings)
+        {
+            _uiManager.GoBackToLastMenu();
+        }
+        */
+    }
 }

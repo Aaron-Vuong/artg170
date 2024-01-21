@@ -9,6 +9,7 @@ public class PauseMenu : MenuManager
     [SerializeField] private UIManager _uiManager;
 
     [SerializeField] private Button _btnBack;
+    [SerializeField] private Button _btnSettings;
 
     [SerializeField] private Logger _logger;
 
@@ -22,6 +23,20 @@ public class PauseMenu : MenuManager
     {
         UnityEngine.Assertions.Assert.IsFalse(menuType == 0);
         UnityEngine.Assertions.Assert.IsNotNull(_btnBack);
+        UnityEngine.Assertions.Assert.IsNotNull(_btnSettings);
         _btnBack.onClick.AddListener(_uiManager.GoBackToLastMenu);
+        _btnSettings.onClick.AddListener(OnDisplayOptionsMenu);
+    }
+    private void Update()
+    {
+        // On User Escape, we go to the settings.
+        if (Input.GetKeyDown(KeyCode.Escape) && _uiManager.getCurrentMenu() == GameMenu.Pause)
+        {
+            _uiManager.GoBackToLastMenu();
+        }
+    }
+    private void OnDisplayOptionsMenu()
+    {
+        _uiManager.GoToMenu(GameMenu.Settings);
     }
 }

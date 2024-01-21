@@ -11,7 +11,8 @@ public enum GameMenu
     Main,
     GameHUD,
     Pause,
-    Settings
+    Settings,
+    Loading
 }
 
 public class UIManager : MonoBehaviour
@@ -25,6 +26,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         _menus = new Dictionary<GameMenu, GameObject>();
         // SceneLoader will populate _menus
         GameObject[] menus = GameObject.FindGameObjectsWithTag("Menu");
@@ -36,7 +38,6 @@ public class UIManager : MonoBehaviour
                 _logger.Log($"MenuManager found on {menu.name}");
 
             _menus[menu.GetComponent<MenuManager>().menuType] = menu;
-            _logger.Log($"Done loading {menu.name} menu");
             menu.GetComponent<MenuManager>().CloseMenu(); //make sure all menus start closed
         }
 
@@ -63,15 +64,20 @@ public class UIManager : MonoBehaviour
             _currentMenu = GameMenu.Main;
         }
         _lastMenu = _currentMenu;
+        _logger.Log($"Setting last menu to {_lastMenu}");
         _currentMenu = Menu;
         OpenMenu(_currentMenu);
     }
 
     public void GoBackToLastMenu()
     {
+        _logger.Log($"Going back to last menu: {_lastMenu}!");
         if (_lastMenu != 0)
         {
             GoToMenu(_lastMenu);
         }
     }
+
+    public GameMenu getCurrentMenu() { return _currentMenu; }
+    public GameMenu getLastMenu() { return _lastMenu; }
 }

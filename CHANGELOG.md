@@ -8,10 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.0.0] - 2024-1-13
 ### Planned
-- Scene loading.
 - Initial documentation for UI/Logger processes.
 
 ### Added
+- Scene loading.
 - UI functionality.
 - SingletonBase class to enforce singleton managers.
 - Logger system to allow for system logging modularity.

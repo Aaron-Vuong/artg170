@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/GameNameTBD/Scenes/MainMenuScene.unity
+    guid: 34e0a7aee79867745a2621cb19c77fe8
+  - enabled: 1
+    path: Assets/GameNameTBD/Scenes/Loading.unity
+    guid: 2a438f577f744cd46834b94d9cceae12
+  - enabled: 1
+    path: Assets/GameNameTBD/Scenes/MainGameScene.unity
+    guid: 71972374efc47d24ca01a7bd95894aae
   m_configObjects: {}

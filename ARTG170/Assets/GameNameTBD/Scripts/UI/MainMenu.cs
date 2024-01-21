@@ -22,7 +22,7 @@ public class MainMenu : MenuManager
     // Start is called before the first frame update
     void Start()
     {
-        _logger.Log("Hellp" + menuType);
+        _logger.Log(menuType);
         UnityEngine.Assertions.Assert.IsFalse(menuType == 0);
         UnityEngine.Assertions.Assert.IsNotNull(_btnStart);
         UnityEngine.Assertions.Assert.IsNotNull(_btnSettings);
@@ -37,6 +37,7 @@ public class MainMenu : MenuManager
     {
         // TODO: Loading Screen Scene -> Main Game Scene.
         _uiManager.GoToMenu(GameMenu.GameHUD);
+        SceneChangeManager.Load(SceneChangeManager.Scene.MainGameScene);
     }
 
     private void OnExitGame()

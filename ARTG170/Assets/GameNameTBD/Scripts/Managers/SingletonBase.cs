@@ -5,18 +5,16 @@ using UnityEngine;
 
 public abstract class SingletonBase<T> :  MonoBehaviour where T : SingletonBase<T>
 {
-    private static SingletonBase<T> _instance;
+    public static SingletonBase<T> Instance;
     private void Awake()
     {
-        /*
-        if (_instance != null)
+        if (Instance != null)
         {
             Destroy(gameObject);
             return;
         }
 
-        _instance = this;
+        Instance = this;
         DontDestroyOnLoad(gameObject);
-        */
     }
 }
