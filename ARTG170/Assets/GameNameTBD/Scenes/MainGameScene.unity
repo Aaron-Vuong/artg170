@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 476237979}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CameraPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,6 +324,37 @@ Transform:
   m_Children:
   - {fileID: 1262350427}
   m_Father: {fileID: 2019524456}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &898688462
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 898688463}
+  m_Layer: 10
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &898688463
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 898688462}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1650825065}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &911175697
 GameObject:
@@ -552,7 +583,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1283014523}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -585,7 +616,7 @@ GameObject:
   - component: {fileID: 1650825065}
   - component: {fileID: 1650825067}
   - component: {fileID: 1650825068}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ---- Player ----
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -608,6 +639,7 @@ Transform:
   - {fileID: 1881860910}
   - {fileID: 476237979}
   - {fileID: 1283014523}
+  - {fileID: 898688463}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &1650825067
@@ -634,7 +666,7 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
 --- !u!114 &1650825068
@@ -650,15 +682,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 7
-  groundDrag: 5
-  jumpForce: 12
+  groundDrag: 7
+  jumpForce: 8
   jumpCooldown: 0.25
   airMultiplier: 0.4
   jumpKey: 32
-  playerHeight: 2
+  groundCheck: {fileID: 898688463}
+  groundDistance: 1
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 128
   orientation: {fileID: 1283014523}
 --- !u!1 &1724926712
 GameObject:
@@ -672,7 +705,7 @@ GameObject:
   - component: {fileID: 1724926716}
   - component: {fileID: 1724926715}
   - component: {fileID: 1724926714}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -854,7 +887,7 @@ GameObject:
   - component: {fileID: 1881860913}
   - component: {fileID: 1881860912}
   - component: {fileID: 1881860911}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: PlayerObj
   m_TagString: Untagged
   m_Icon: {fileID: 0}

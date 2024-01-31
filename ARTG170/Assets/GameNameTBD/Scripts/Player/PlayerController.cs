@@ -18,7 +18,8 @@ public class PlayerController : MonoBehaviour
     public KeyCode jumpKey = KeyCode.Space;
 
     [Header("Ground Check")]
-    public float playerHeight;
+    public Transform groundCheck;
+    public float groundDistance = 0.4f;
     public LayerMask whatIsGround;
     bool grounded;
 
@@ -42,7 +43,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         //ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
+        //grounded = Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), Vector3.down, (playerHeight * 0.5f) + 0.3f, whatIsGround);
+        grounded = Physics.CheckSphere(groundCheck.position, groundDistance, whatIsGround);
 
         MyInput();
         SpeedControl();
@@ -85,11 +87,13 @@ public class PlayerController : MonoBehaviour
         if (grounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            Debug.Log("grounded");
 
         }
         else if(!grounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+            Debug.Log("NOT grounded");
         }
         
     }
