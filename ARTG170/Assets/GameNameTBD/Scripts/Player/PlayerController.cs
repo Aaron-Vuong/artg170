@@ -4,6 +4,21 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Camera")]
+    [SerializeField] private Camera _camera;
+    [Header("Player Data")]
+    private Inventory _inventory;
+    [SerializeField] private HUDMenu _hudMenu;
+    // PLAYER HP
+    [Header("HP")]
+    public int health = 5;
+    public int maxHealth = 5;
+
+    private float explosionRadius = 20f;
+    private float explosionForce = 500f;
+
+    [SerializeField] private bool canAttack = true;
+    [SerializeField] private int cooldown = 3;
     [Header("Movement")]
     public float moveSpeed;
 
@@ -16,6 +31,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode interactKey = KeyCode.F;
+    public KeyCode dropKey = KeyCode.G;
 
     [Header("Ground Check")]
     public Transform groundCheck;
@@ -33,18 +50,40 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        _inventory = GetComponent<Inventory>();
+
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
         readyToJump = true;
+        GameStateManager.Instance.hudMenu.SetHealth(health, maxHealth);
+
     }
 
     // Update is called once per frame
     private void Update()
     {
+        if (_camera == null)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                GameObject child = transform.GetChild(i).gameObject;
+                if (child.tag == "MainCamera")
+                {
+                    _camera = child.GetComponent<Camera>();
+                    break;
+                }
+            }
+
+        }
+
+        if (_hudMenu == null)
+        {
+            _hudMenu = GameStateManager.Instance.hudMenu;
+        }
         //ground check
         //grounded = Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), Vector3.down, (playerHeight * 0.5f) + 0.3f, whatIsGround);
-        grounded = Physics.CheckSphere(groundCheck.position, groundDistance, whatIsGround);
+        grounded = true;// Physics.CheckSphere(groundCheck.position, groundDistance, whatIsGround);
 
         MyInput();
         SpeedControl();
@@ -57,6 +96,23 @@ public class PlayerController : MonoBehaviour
         else
         {
             rb.drag = 0;
+        }
+        Debug.DrawRay(new Vector3(transform.position.x, 2, transform.position.z), _camera.transform.forward * 3, Color.green);
+
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit hit;
+            Vector3 mousePosition = Input.mousePosition;
+            Ray ray = _camera.ScreenPointToRay(mousePosition);
+            if (Physics.Raycast(ray, out hit, 5f))
+            {
+                if (hit.collider != null)
+                {
+                    // Use the hit variable to determine what was clicked on.
+                    hit.collider.gameObject.GetComponent<MobStats>().TakeDamage();
+                }
+            }
         }
     }
 
@@ -76,6 +132,16 @@ public class PlayerController : MonoBehaviour
             readyToJump = false;
             Jump();
             Invoke(nameof(ResetJump), jumpCooldown);
+        }
+
+       if (Input.GetKey(interactKey))
+       {
+            Interact();
+       }
+
+       if (Input.GetKey(dropKey))
+        {
+            DropItem();
         }
 
     }
@@ -121,5 +187,75 @@ public class PlayerController : MonoBehaviour
     private void ResetJump()
     {
         readyToJump = true;
+    }
+
+    private void Interact()
+    {
+        RaycastHit hit;
+        Debug.Log("Sending RayCast!!!");
+        if (Physics.Raycast(new Vector3(transform.position.x, 2, transform.position.z), _camera.transform.forward, out hit, 3f))
+        {
+            Debug.Log($"Hit Something! {hit.collider.gameObject.name}");
+            if (hit.collider != null)
+            {
+                if (hit.collider.gameObject.tag == "Pickup" && !_inventory.isFull())
+                {
+                    // If there are slots in your inventory.
+                    // Despawn model
+                    // Display it in hotbar.
+                    // Manage the Inventory.
+                    ItemInstance itemInstance = hit.collider.GetComponent<ItemInstance>();
+                    Debug.Log($"ITEM INSTANCE1: {itemInstance}");
+                    hit.collider.gameObject.SetActive(false);
+                    _hudMenu.displaySpriteOnHotbar(itemInstance.itemType.icon, _hudMenu.getSelectedSlotIndex());
+                    _inventory.AddItem(hit.collider.gameObject, _hudMenu.getSelectedSlotIndex());
+                }
+            }
+        }
+    }
+
+    private void DropItem()
+    {
+        int selectedIdx = _hudMenu.getSelectedSlotIndex();
+        GameObject storedObject = _inventory.RemoveItem(selectedIdx);
+        if (storedObject != null)
+        {
+            _hudMenu.removeSpriteOnHotBar(selectedIdx);
+            // Place it below our feet and make visible again.
+            storedObject.transform.position = new Vector3(transform.position.x, 4, transform.position.z);
+            storedObject.SetActive(true);
+        }
+    }
+
+    public void SubtractHealth()
+    {
+        health -= 1;
+        GameStateManager.Instance.hudMenu.SetHealth(health, maxHealth);
+        if (health == 0)
+        {
+            GameStateManager.Instance.mainMenu.OnExitGame();
+        }
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+
+        if (other.gameObject.tag == "PlayerCollider" && canAttack)
+        {
+            other.gameObject.transform.parent.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius);
+            other.gameObject.GetComponent<PlayerController>().SubtractHealth();
+            // Start cooling down for the next attack.
+            Debug.Log("ATTACKED!");
+            canAttack = false;
+            StartCoroutine(AttackCooldown());
+        }
+    }
+
+    IEnumerator AttackCooldown()
+    {
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(cooldown);
+        canAttack = true;
     }
 }

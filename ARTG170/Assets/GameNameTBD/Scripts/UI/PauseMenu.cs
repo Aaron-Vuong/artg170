@@ -1,4 +1,3 @@
-using Palmmedia.ReportGenerator.Core.Logging;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,11 +28,13 @@ public class PauseMenu : MenuManager
     }
     private void Update()
     {
+        /*
         // On User Escape, we go to the settings.
         if (Input.GetKeyDown(KeyCode.Escape) && _uiManager.getCurrentMenu() == GameMenu.Pause)
         {
             _uiManager.GoBackToLastMenu();
         }
+        */
     }
     private void OnDisplayOptionsMenu()
     {

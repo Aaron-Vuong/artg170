@@ -13,6 +13,7 @@ public class MainMenu : MenuManager
     [SerializeField] private Button _btnExit;
 
     [SerializeField] private Logger _logger;
+    [SerializeField] private PlayerCam _playerCam;
 
     protected override void InnerAwake()
     {
@@ -37,10 +38,13 @@ public class MainMenu : MenuManager
     {
         // TODO: Loading Screen Scene -> Main Game Scene.
         _uiManager.GoToMenu(GameMenu.GameHUD);
+        _playerCam.lockCursor();
         SceneChangeManager.Load(SceneChangeManager.Scene.MainGameScene);
+
     }
 
-    private void OnExitGame()
+    // TODO FIX PERMISSIONS
+    public void OnExitGame()
     {
         Application.Quit();
     }
