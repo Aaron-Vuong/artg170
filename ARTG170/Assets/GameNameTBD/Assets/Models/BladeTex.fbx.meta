@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:ARTG170/Assets/GameNameTBD/Assets/Models/BladeTex.fbx.meta
 guid: abeb44353c542a94d927c1d8e42cbbe9
+========
+guid: 22d380cb41009ff4e9faa5f5206dd272
+>>>>>>>> main:ARTG170/Assets/GameNameTBD/Assets/Models/NEWScorpionArmTex.fbx.meta
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
