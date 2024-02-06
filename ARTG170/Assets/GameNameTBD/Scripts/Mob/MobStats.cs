@@ -20,6 +20,8 @@ public class MobStats : MonoBehaviour
         if (health == 0)
         {
             Destroy(gameObject);
+
+            SceneChangeManager.Load(SceneChangeManager.Scene.GameOver);
         }
         Debug.Log("Got Hit!");
         StartCoroutine("Damaged");

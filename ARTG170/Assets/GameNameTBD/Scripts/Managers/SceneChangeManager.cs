@@ -15,7 +15,8 @@ public class SceneChangeManager : MonoBehaviour
     public enum Scene {
         MainGameScene,
         Loading,
-        MainMenuScene
+        MainMenuScene,
+        GameOver
     }
 
     private static Action onLoaderCallback;

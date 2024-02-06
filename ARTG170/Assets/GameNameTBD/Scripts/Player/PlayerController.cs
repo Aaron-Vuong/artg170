@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     public float airMultiplier;
     bool readyToJump;
 
+
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode interactKey = KeyCode.F;
@@ -83,7 +84,8 @@ public class PlayerController : MonoBehaviour
         }
         //ground check
         //grounded = Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), Vector3.down, (playerHeight * 0.5f) + 0.3f, whatIsGround);
-        grounded = true;// Physics.CheckSphere(groundCheck.position, groundDistance, whatIsGround);
+        grounded = true;
+        //Physics.CheckSphere(groundCheck.position, groundDistance, whatIsGround);
 
         MyInput();
         SpeedControl();
@@ -153,13 +155,13 @@ public class PlayerController : MonoBehaviour
         if (grounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-            Debug.Log("grounded");
+           // Debug.Log("grounded");
 
         }
         else if(!grounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
-            Debug.Log("NOT grounded");
+            //Debug.Log("NOT grounded");
         }
         
     }
@@ -233,7 +235,7 @@ public class PlayerController : MonoBehaviour
         GameStateManager.Instance.hudMenu.SetHealth(health, maxHealth);
         if (health == 0)
         {
-            GameStateManager.Instance.mainMenu.OnExitGame();
+            SceneChangeManager.Load(SceneChangeManager.Scene.GameOver);
         }
     }
 
