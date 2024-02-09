@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 39
+  controlID: 41
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -94,8 +94,8 @@ MonoBehaviour:
     y: 0
     width: 458
     height: 810
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 40
+  controlID: 42
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 41
+  controlID: 43
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -394,7 +394,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/GameNameTBD/Scenes
+    - Assets/GameNameTBD/Assets/Models
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -402,16 +402,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/GameNameTBD/Scenes
+  - Assets/GameNameTBD/Assets/Models
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\knigh\Desktop\artg170\ARTG170
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 36}
-    m_SelectedIDs: 52630000
-    m_LastClickedID: 25426
-    m_ExpandedIDs: 000000002c6300002e63000030630000326300003463000036630000386300003a6300003c63000000ca9a3b
+    m_SelectedIDs: 1a660000
+    m_LastClickedID: 26138
+    m_ExpandedIDs: 000000005e65000060650000626500006465000066650000686500006a6500006c6500006e65000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -439,7 +439,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000002c6300002e63000030630000326300003463000036630000386300003a6300003c630000
+    m_ExpandedIDs: 000000005e65000060650000626500006465000066650000686500006a6500006c6500006e650000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -579,9 +579,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 6e630000
-      m_LastClickedID: 0
-      m_ExpandedIDs: a432ffff5636ffffea44ffffbe48ffff52f6ffffd2f9ffff1afbffff2e64000036640000886b0000f66b0000fe6b0000
+      m_SelectedIDs: b8f7ffff
+      m_LastClickedID: -2120
+      m_ExpandedIDs: b8f7ffff1afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1039,9 +1039,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 153.88458, y: -26.027912, z: -1008.67957}
+    m_Target: {x: 501.7942, y: -21.221447, z: -891.5223}
     speed: 2
-    m_Value: {x: 153.88458, y: -26.027912, z: -1008.67957}
+    m_Value: {x: 501.7942, y: -21.221447, z: -891.5223}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1087,13 +1087,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.00031165715, y: 0.99740624, z: -0.019861035, w: 0.078944385}
+    m_Target: {x: 0.0022651795, y: 0.9684011, z: -0.013690925, w: 0.25189734}
     speed: 2
-    m_Value: {x: 0.00019343979, y: 0.99671453, z: -0.018351613, w: 0.078887746}
+    m_Value: {x: 0.002284063, y: 0.96732324, z: -0.01367763, w: 0.25316674}
   m_Size:
-    m_Target: 549.1702
+    m_Target: 517.06836
     speed: 2
-    m_Value: 525.5217
+    m_Value: 517.06836
   m_Ortho:
     m_Target: 0
     speed: 2
