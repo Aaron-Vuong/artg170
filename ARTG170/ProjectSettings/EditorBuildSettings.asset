@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/GameNameTBD/Scenes/MainGameScene.unity
     guid: 71972374efc47d24ca01a7bd95894aae
   - enabled: 1
+    path: Assets/GameNameTBD/Scenes/HouseLevel.unity
+    guid: 9269f31b07e0b56499775e37a22155a0
+  - enabled: 1
     path: Assets/GameNameTBD/Scenes/GameOver.unity
     guid: fa3967369cc71e94d9bd9ae09edcf6e3
   m_configObjects: {}

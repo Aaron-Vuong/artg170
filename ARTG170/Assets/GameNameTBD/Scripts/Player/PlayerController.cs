@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement; 
 
 public class PlayerController : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode interactKey = KeyCode.F;
     public KeyCode dropKey = KeyCode.G;
+    public KeyCode houseKey = KeyCode.H;
 
     [Header("Ground Check")]
     public Transform groundCheck;
@@ -144,6 +146,11 @@ public class PlayerController : MonoBehaviour
        if (Input.GetKey(dropKey))
         {
             DropItem();
+        }
+
+       if(Input.GetKey(houseKey))
+        {
+            SceneManager.LoadScene("HouseLevel");
         }
 
     }

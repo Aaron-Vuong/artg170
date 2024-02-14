@@ -8,6 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using System;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class HUDMenu : MenuManager
 {
@@ -136,5 +137,11 @@ public class HUDMenu : MenuManager
     public void SetHealth(int health, int maxHealth)
     {
         _healthText.text = $"Health: {health}/{maxHealth}";
+    }
+
+
+    public void Houselevel()
+    {
+        SceneManager.LoadScene("HouseLevel");
     }
 }

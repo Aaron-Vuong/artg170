@@ -14,7 +14,7 @@ public class PlayerCam : MonoBehaviour
     float yRotation;
     
     public GameMenu gameMenu;
-
+   
 
     private void Update()
     {
@@ -29,7 +29,7 @@ public class PlayerCam : MonoBehaviour
                 orientation = player.transform;
             }
         }
-        Debug.Log($"ORIENTATION {orientation}");
+        //Debug.Log($"ORIENTATION {orientation}");
 
         // get mouse input
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
@@ -43,6 +43,8 @@ public class PlayerCam : MonoBehaviour
         // rotate cam and orientation
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        
+
     }
 
     public void lockCursor()
