@@ -28,6 +28,10 @@ public class PlayerCam : MonoBehaviour
                 transform.localPosition = new Vector3(0, 2, 0);
                 orientation = player.transform;
             }
+            else {
+                // Don't move the camera if we aren't on a Player.
+                return;
+            }
         }
         //Debug.Log($"ORIENTATION {orientation}");
 
@@ -51,5 +55,11 @@ public class PlayerCam : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+    }
+
+    public void unlockCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }

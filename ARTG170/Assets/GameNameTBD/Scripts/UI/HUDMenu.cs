@@ -16,10 +16,14 @@ public class HUDMenu : MenuManager
     [SerializeField] private Canvas _canvas;
     [SerializeField] private int _selectedIndex = 0;
 
+    [Header("Player Camera")]
+    [SerializeField] private PlayerCam _playerCam;
     [Header("Player Info")]
     [SerializeField] private TMP_Text _healthText;
     [Header("Crosshair")]
     [SerializeField] private UnityEngine.UI.Image _crosshair;
+    [SerializeField] private float _crosshairScale = 0.2f;
+    [SerializeField] private Color _crosshairColor;
 
     [Header("Inventory Hotbar")]
     [SerializeField] private int _numSlots = 5;
@@ -42,21 +46,20 @@ public class HUDMenu : MenuManager
         _selectionBorder = new GameObject();
 
         initializeSelectionBorder();
-        initializeCrosshair();
+        createCrosshair();
     }
     private void Update()
     {
-        /*
         // On User Escape, we go to the settings.
         if (Input.GetKeyDown(KeyCode.Escape) && _uiManager.getCurrentMenu() == GameMenu.GameHUD)
         {
             _uiManager.GoToMenu(GameMenu.Settings);
         }
-        */
         updateHotbarSelection();
     }
-    private void initializeCrosshair() {
-        _crosshair.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+
+    private void createCrosshair() {
+        _crosshair.transform.localScale = new Vector3(_crosshairScale, _crosshairScale, _crosshairScale);
     }
     private void initializeSelectionBorder() {
         UnityEngine.UI.Image selectionImage = _selectionBorder.AddComponent<UnityEngine.UI.Image>();

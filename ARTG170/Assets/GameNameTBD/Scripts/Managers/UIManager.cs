@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 public enum GameMenu
@@ -23,6 +24,7 @@ public class UIManager : MonoBehaviour
     private GameMenu _lastMenu;
     [SerializeField]
     private Logger _logger;
+    [SerializeField] private PlayerCam _playerCam;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,6 +57,7 @@ public class UIManager : MonoBehaviour
     }
     public void GoToMenu(GameMenu Menu)
     {
+        // 0 is the Undefined default, we want to instead default to GameMenu.Main.
         if (_currentMenu != 0)
         {
             CloseMenu(_currentMenu);
@@ -66,6 +69,13 @@ public class UIManager : MonoBehaviour
         _lastMenu = _currentMenu;
         _logger.Log($"Setting last menu to {_lastMenu}");
         _currentMenu = Menu;
+        // Lock the cursor if we are in the GameHUD.
+        if (_currentMenu == GameMenu.GameHUD) {
+            _playerCam.lockCursor();
+        }
+        else {
+            _playerCam.unlockCursor();
+        }
         OpenMenu(_currentMenu);
     }
 

@@ -38,7 +38,6 @@ public class MainMenu : MenuManager
     {
         // TODO: Loading Screen Scene -> Main Game Scene.
         _uiManager.GoToMenu(GameMenu.GameHUD);
-        _playerCam.lockCursor();
         SceneChangeManager.Load(SceneChangeManager.Scene.MainGameScene);
 
     }

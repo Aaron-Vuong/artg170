@@ -152,7 +152,6 @@ public class PlayerController : MonoBehaviour
         {
             SceneManager.LoadScene("HouseLevel");
         }
-
     }
 
     private void MovePlayer()
