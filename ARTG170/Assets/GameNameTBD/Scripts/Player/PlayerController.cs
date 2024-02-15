@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     [Header("Ground Check")]
     public PlayerCollider gCheck;
     public Transform groundCheck;
-    public float groundDistance = 0.4f;
+    public float groundDistance = 1f;
     public LayerMask whatIsGround;
     bool grounded;
 
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
         //Debug.DrawRay(transform.position + new Vector3(0, -1f, 0), Vector3.down, Color.yellow);
         Debug.Log($"isGrounded: {gCheck.grounded}");
         grounded = gCheck.grounded;
-        //Physics.CheckSphere(groundCheck.position, groundDistance, whatIsGround);
+        Debug.Log($"aewfawefisGrounded: {Physics.CheckSphere(groundCheck.position, groundDistance, whatIsGround)}");
 
         MyInput();
         SpeedControl();
