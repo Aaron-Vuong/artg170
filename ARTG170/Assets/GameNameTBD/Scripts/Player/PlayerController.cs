@@ -111,8 +111,11 @@ public class PlayerController : MonoBehaviour
         {
             rb.drag = 0;
         }
-        Debug.DrawRay(new Vector3(transform.position.x, 2, transform.position.z), _camera.transform.forward * 3, Color.green);
-        if (Physics.Raycast(new Vector3(transform.position.x, 2, transform.position.z), _camera.transform.forward, out hit, 3f))
+        Vector3 mousePosition = Input.mousePosition;
+        Ray ray = _camera.ScreenPointToRay(mousePosition);
+        
+        Debug.DrawRay(mousePosition, _camera.transform.forward * 5, Color.green);
+        if (Physics.Raycast(ray, out hit, 5f))
         {
             Debug.Log($"Hovering over something! {hit.collider.gameObject.name}");
             if (hit.collider != null)
@@ -134,8 +137,8 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 mousePosition = Input.mousePosition;
-            Ray ray = _camera.ScreenPointToRay(mousePosition);
+            mousePosition = Input.mousePosition;
+            ray = _camera.ScreenPointToRay(mousePosition);
             if (Physics.Raycast(ray, out hit, 5f))
             {
                 if (hit.collider != null)
@@ -229,9 +232,11 @@ public class PlayerController : MonoBehaviour
 
     private void Interact()
     {
+        Vector3 mousePosition = Input.mousePosition;
+        Ray ray = _camera.ScreenPointToRay(mousePosition);
         RaycastHit hit;
         Debug.Log("Sending RayCast!!!");
-        if (Physics.Raycast(new Vector3(transform.position.x, 2, transform.position.z), _camera.transform.forward, out hit, 3f))
+        if (Physics.Raycast(ray, out hit, 5f))
         {
             Debug.Log($"Hit Something! {hit.collider.gameObject.name}");
             if (hit.collider != null)
