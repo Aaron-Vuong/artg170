@@ -18,6 +18,8 @@ public class HUDMenu : MenuManager
 
     [Header("Player Info")]
     [SerializeField] private TMP_Text _healthText;
+    [Header("Crosshair")]
+    [SerializeField] private UnityEngine.UI.Image _crosshair;
 
     [Header("Inventory Hotbar")]
     [SerializeField] private int _numSlots = 5;
@@ -28,7 +30,7 @@ public class HUDMenu : MenuManager
     [SerializeField] private Sprite _slotImage;
     [SerializeField] private Sprite _selectionBorderImage;
     private GameObject _selectionBorder;
-    private int _offsetFactor = 2;
+    private int _offsetFactor = 1;
     protected override void InnerAwake()
     {
         menuType = GameMenu.GameHUD;
@@ -38,11 +40,9 @@ public class HUDMenu : MenuManager
         _canvas = GetComponent<Canvas>();
         instantiateTiledHotbar();
         _selectionBorder = new GameObject();
-        UnityEngine.UI.Image selectionImage = _selectionBorder.AddComponent<UnityEngine.UI.Image>();
-        selectionImage.sprite = _selectionBorderImage;// new Vector3((float)1 / _offsetFactor, (float)1 / _offsetFactor, (float)1 / _offsetFactor);
-        _selectionBorder.GetComponent<RectTransform>().SetParent(_canvas.transform);
-        _selectionBorder.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        _selectionBorder.name = "Slot Border";
+
+        initializeSelectionBorder();
+        initializeCrosshair();
     }
     private void Update()
     {
@@ -55,7 +55,17 @@ public class HUDMenu : MenuManager
         */
         updateHotbarSelection();
     }
+    private void initializeCrosshair() {
+        _crosshair.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
+    }
+    private void initializeSelectionBorder() {
+        UnityEngine.UI.Image selectionImage = _selectionBorder.AddComponent<UnityEngine.UI.Image>();
+        selectionImage.sprite = _selectionBorderImage;
+        _selectionBorder.GetComponent<RectTransform>().SetParent(_canvas.transform);
+        _selectionBorder.transform.localScale = new Vector3(1f, 1f, 1f);
+        _selectionBorder.name = "Slot Border";
 
+    }
     //TODO: Debug Evens (where no tile is at 0)
     private void instantiateTiledHotbar()
     {
@@ -74,8 +84,6 @@ public class HUDMenu : MenuManager
         for (int slotIdx = -offCenterSlots; slotIdx < rightSlots; slotIdx++)
         {
             Vector3 slotPosition = new Vector3((slotOffset * slotIdx), _hotbarOrigin.transform.position.y, 10);
-            // Internally store the position of each tile.
-            _slots.Add(new Vector2(slotPosition.x, slotPosition.y));
             // Generate a new tile.
             GameObject newSlot = new GameObject();
             newSlot.name = $"Slot {slotIdx + offCenterSlots}";
@@ -86,6 +94,8 @@ public class HUDMenu : MenuManager
             newSlot.transform.localScale = new Vector3((float)1/_offsetFactor, (float)1 /_offsetFactor, (float)1 /_offsetFactor);
             newSlot.transform.position = slotPosition;
             newSlot.transform.localPosition = new Vector3(newSlot.transform.localPosition.x, newSlot.transform.localPosition.y, 10);
+            // Internally store the position of each tile.
+            _slots.Add(new Vector2(newSlot.transform.localPosition.x, newSlot.transform.localPosition.y));
             Debug.Log($"Position: {slotPosition}");
             Debug.Log($"currentImageScale {newSlot.transform.localScale} {newSlot.transform.position}");
             
@@ -127,11 +137,7 @@ public class HUDMenu : MenuManager
         _selectedIndex = _selectedIndex % _numSlots;
         // Move the selection image to the new slot.
         Vector2 selectionImagePlacement = getInventorySlotPosition(Math.Abs(_selectedIndex));
-        _selectionBorder.transform.position = new Vector3(selectionImagePlacement.x, selectionImagePlacement.y, 9);
-        // TODO: UGLY CONSTANTS!!! (Figure out the image scaling problem here.)
-        _selectionBorder.transform.localPosition = new Vector3(selectionImagePlacement.x * 4.429f, selectionImagePlacement.y * 4.5f, 9);
-
-        //Debug.Log($"Selected Slot {_selectedIndex}, {selectionImagePlacement}, {_selectionBorder.transform.position}");
+        _selectionBorder.transform.localPosition = new Vector3(selectionImagePlacement.x, selectionImagePlacement.y, 9);
     }
 
     public void SetHealth(int health, int maxHealth)
