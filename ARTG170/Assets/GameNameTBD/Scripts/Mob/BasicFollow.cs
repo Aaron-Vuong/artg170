@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 
 public class BasicFollow : MonoBehaviour
@@ -27,10 +28,14 @@ public class BasicFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        PointToPlayer();
         DetectPlayer();
     }
-
+    private void PointToPlayer()
+    {
+        Vector3 horizontalLook = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
+        transform.LookAt(horizontalLook);
+    }
     private void DetectPlayer()
     {
         Vector3 direction = player.transform.position - _eyeCast.transform.position;

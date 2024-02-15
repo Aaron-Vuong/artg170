@@ -12,7 +12,15 @@ public class AttackTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Attack(other);
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        Attack(other);
+    }
 
+    private void Attack(Collider other)
+    {
         if (other.gameObject.tag == "PlayerCollider" && canAttack)
         {
             other.gameObject.transform.parent.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius);
