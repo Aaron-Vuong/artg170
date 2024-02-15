@@ -5,17 +5,12 @@ using UnityEngine;
 public class MobStats : MonoBehaviour
 {
     [SerializeField] private float health = 3;
-    [SerializeField] private Renderer _renderer;
-    [SerializeField] private float flashDuration = 2;
     private ParticleSystem _particleSystem;
     public float damagedIndicatorTime = 2;
-    private Color normalColor;
 
     private void Start()
     {
         _particleSystem = GetComponent<ParticleSystem>();
-        _renderer = GetComponent<MeshRenderer>();
-        normalColor = transform.Find("body").GetComponent<SkinnedMeshRenderer>().material.color;
     }
     public void TakeDamage()
     {

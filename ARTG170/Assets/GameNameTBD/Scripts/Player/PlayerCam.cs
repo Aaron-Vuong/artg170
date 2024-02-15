@@ -15,7 +15,6 @@ public class PlayerCam : MonoBehaviour
     
     public GameMenu gameMenu;
     private bool canUpdate = true;
-    private float sceneChangeTimer = 3f;
 
     private void Update()
     {

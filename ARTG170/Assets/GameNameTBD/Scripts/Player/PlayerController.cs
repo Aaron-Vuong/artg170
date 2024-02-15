@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Camera _camera;
     [Header("Player Data")]
     private Inventory _inventory;
-    private float playerHeight = 1;
     [SerializeField] private HUDMenu _hudMenu;
     // PLAYER HP
     [Header("HP")]
