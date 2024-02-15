@@ -11,8 +11,11 @@ public class PlayerController : MonoBehaviour
     [Header("Audio")]
     private AudioSource playerAudioSource;
     [SerializeField] private AudioClip weaponAttackSoundClip;
+    [SerializeField] private AudioClip interactSoundClip;
+
     [Header("Camera")]
     [SerializeField] private Camera _camera;
+
     [Header("Player Data")]
     private Inventory _inventory;
     [SerializeField] private HUDMenu _hudMenu;
@@ -60,6 +63,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        // Preserve the Player.
         DontDestroyOnLoad(this.gameObject);
         _inventory = GetComponent<Inventory>();
 
@@ -147,8 +151,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
             // Play audio for the swing of the weapon.
-            playerAudioSource.clip = weaponAttackSoundClip;
-            playerAudioSource.Play();
+            playerAudioSource.PlayOneShot(weaponAttackSoundClip);
         }
     }
 
@@ -251,6 +254,9 @@ public class PlayerController : MonoBehaviour
                     hit.collider.gameObject.SetActive(false);
                     _hudMenu.displaySpriteOnHotbar(itemInstance.itemType.icon, _hudMenu.getSelectedSlotIndex());
                     _inventory.AddItem(hit.collider.gameObject, _hudMenu.getSelectedSlotIndex());
+
+                    // Play audio for the swing of the weapon.
+                    playerAudioSource.PlayOneShot(interactSoundClip);
                 }
             }
         }
