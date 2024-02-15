@@ -1,11 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement; 
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Audio")]
+    private AudioSource playerAudioSource;
+    [SerializeField] private AudioClip weaponAttackSoundClip;
     [Header("Camera")]
     [SerializeField] private Camera _camera;
     [Header("Player Data")]
@@ -56,19 +61,20 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        DontDestroyOnLoad(this.gameObject);
         _inventory = GetComponent<Inventory>();
 
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        playerAudioSource = GetComponent<AudioSource>();
 
         readyToJump = true;
-        GameStateManager.Instance.hudMenu.SetHealth(health, maxHealth);
-
     }
 
     // Update is called once per frame
     private void Update()
     {
+        RaycastHit hit;
         if (_camera == null)
         {
             for (int i = 0; i < transform.childCount; i++)
@@ -86,13 +92,12 @@ public class PlayerController : MonoBehaviour
         if (_hudMenu == null)
         {
             _hudMenu = GameStateManager.Instance.hudMenu;
+            _hudMenu.SetHealth(health, maxHealth);
         }
         //ground check
         //grounded = Physics.Raycast(transform.position + new Vector3(0, -1, 0), Vector3.down, 1f);
         //Debug.DrawRay(transform.position + new Vector3(0, -1f, 0), Vector3.down, Color.yellow);
-        Debug.Log($"isGrounded: {gCheck.grounded}");
         grounded = gCheck.grounded;
-        Debug.Log($"aewfawefisGrounded: {Physics.CheckSphere(groundCheck.position, groundDistance, whatIsGround)}");
 
         MyInput();
         SpeedControl();
@@ -107,11 +112,28 @@ public class PlayerController : MonoBehaviour
             rb.drag = 0;
         }
         Debug.DrawRay(new Vector3(transform.position.x, 2, transform.position.z), _camera.transform.forward * 3, Color.green);
-
+        if (Physics.Raycast(new Vector3(transform.position.x, 2, transform.position.z), _camera.transform.forward, out hit, 3f))
+        {
+            Debug.Log($"Hovering over something! {hit.collider.gameObject.name}");
+            if (hit.collider != null)
+            {
+                // Display key to pickup.
+                if (hit.collider.gameObject.tag == "Pickup")
+                {
+                    _hudMenu.displayPickupTooltip();
+                }
+                else {
+                    _hudMenu.hidePickupTooltip();
+                }
+                
+            }
+        }
+        else {
+            _hudMenu.hidePickupTooltip();
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit hit;
             Vector3 mousePosition = Input.mousePosition;
             Ray ray = _camera.ScreenPointToRay(mousePosition);
             if (Physics.Raycast(ray, out hit, 5f))
@@ -122,6 +144,9 @@ public class PlayerController : MonoBehaviour
                     hit.collider.gameObject.GetComponent<MobStats>().TakeDamage();
                 }
             }
+            // Play audio for the swing of the weapon.
+            playerAudioSource.clip = weaponAttackSoundClip;
+            playerAudioSource.Play();
         }
     }
 
@@ -153,9 +178,9 @@ public class PlayerController : MonoBehaviour
             DropItem();
         }
 
-       if(Input.GetKey(houseKey))
+       if(Input.GetKeyDown(houseKey))
         {
-            SceneManager.LoadScene("HouseLevel");
+            _hudMenu.loadHouse();
         }
     }
 
@@ -243,7 +268,7 @@ public class PlayerController : MonoBehaviour
     public void SubtractHealth()
     {
         health -= 1;
-        GameStateManager.Instance.hudMenu.SetHealth(health, maxHealth);
+        _hudMenu.SetHealth(health, maxHealth);
         if (health == 0)
         {
             SceneChangeManager.Load(SceneChangeManager.Scene.GameOver);

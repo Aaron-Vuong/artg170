@@ -14,10 +14,12 @@ public class PlayerCam : MonoBehaviour
     float yRotation;
     
     public GameMenu gameMenu;
-   
+    private bool canUpdate = true;
+    private float sceneChangeTimer = 3f;
 
     private void Update()
     {
+        if (!canUpdate) {return;}
         // If we don't have a child camera, yoink one.
         if (transform.parent.gameObject.name != "---- Player ----")
         {
@@ -62,4 +64,5 @@ public class PlayerCam : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
+    
 }

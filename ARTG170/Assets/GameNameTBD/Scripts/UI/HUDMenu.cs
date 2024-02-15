@@ -9,6 +9,7 @@ using UnityEngine.UIElements;
 using System;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting.FullSerializer;
 
 public class HUDMenu : MenuManager
 {
@@ -24,6 +25,8 @@ public class HUDMenu : MenuManager
     [SerializeField] private UnityEngine.UI.Image _crosshair;
     [SerializeField] private float _crosshairScale = 0.2f;
     [SerializeField] private Color _crosshairColor;
+    [SerializeField] private TMP_Text _pickupTip;
+    public bool isPickupVisible = false;
 
     [Header("Inventory Hotbar")]
     [SerializeField] private int _numSlots = 5;
@@ -35,6 +38,9 @@ public class HUDMenu : MenuManager
     [SerializeField] private Sprite _selectionBorderImage;
     private GameObject _selectionBorder;
     private int _offsetFactor = 1;
+    [Header("Scene")]
+    public bool inHouseLevel = false;
+    private string lastGameSceneName;
     protected override void InnerAwake()
     {
         menuType = GameMenu.GameHUD;
@@ -44,7 +50,8 @@ public class HUDMenu : MenuManager
         _canvas = GetComponent<Canvas>();
         instantiateTiledHotbar();
         _selectionBorder = new GameObject();
-
+        
+        UnityEngine.Assertions.Assert.IsNotNull(_pickupTip);
         initializeSelectionBorder();
         createCrosshair();
     }
@@ -104,6 +111,9 @@ public class HUDMenu : MenuManager
             
             newSlot.SetActive(true);
         }
+        foreach (var img in _itemImages) {
+            Debug.Log($"{img}");
+        }
     }
     public Vector2 getInventorySlotPosition(int slotIdx)
     {
@@ -115,6 +125,10 @@ public class HUDMenu : MenuManager
 
     public void displaySpriteOnHotbar(Sprite itemImage, int slotIdx = -1)
     {
+        Debug.Log($"SLOT: {slotIdx}, {_itemImages}");
+        foreach (var img in _itemImages) {
+            Debug.Log($"{img}");
+        }
         // SlotIDX will default to -1 to indicate any free spot.
         UnityEngine.UI.Image imageHolder = _itemImages[slotIdx];
         imageHolder.sprite = itemImage;
@@ -148,9 +162,36 @@ public class HUDMenu : MenuManager
         _healthText.text = $"Health: {health}/{maxHealth}";
     }
 
-
-    public void Houselevel()
+    public void displayPickupTooltip()
     {
-        SceneManager.LoadScene("HouseLevel");
+        if (!isPickupVisible) {
+            _pickupTip.text = "Pickup (F)";
+            isPickupVisible = true;
+        }
+    }
+
+    public void hidePickupTooltip() {
+        if (isPickupVisible) {
+            _pickupTip.text = "";
+            isPickupVisible = false;
+        }
+    }
+
+    // TODO: This will reset a player's progress since we reload the scene.
+    // We need to additively load the scenes and then choose which is the active.
+    public void loadHouse()
+    {
+        if (!inHouseLevel) {
+            Scene lastGameScene = SceneManager.GetActiveScene();
+            lastGameSceneName = lastGameScene.name;
+            Debug.Log($"Saved Last Scene as {lastGameSceneName}");
+            SceneManager.LoadScene("HouseLevel");
+            inHouseLevel = true;
+        }
+        else {
+            SceneManager.LoadScene(lastGameSceneName);
+            inHouseLevel = false;
+        }
+
     }
 }

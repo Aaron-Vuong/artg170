@@ -8,8 +8,7 @@ using UnityEngine.SceneManagement;
 public class SceneChangeManager : MonoBehaviour
 {
     [Header("Debug")]
-    [SerializeField]
-    Logger _logger;
+    [SerializeField] private Logger _logger;
 
     private class LoadingMonoBehavior: MonoBehaviour { }
     public enum Scene {
