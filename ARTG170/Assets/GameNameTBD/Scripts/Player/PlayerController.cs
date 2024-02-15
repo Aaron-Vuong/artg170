@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Camera _camera;
     [Header("Player Data")]
     private Inventory _inventory;
+    private float playerHeight = 1;
     [SerializeField] private HUDMenu _hudMenu;
     // PLAYER HP
     [Header("HP")]
@@ -19,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private float explosionForce = 500f;
 
     [SerializeField] private bool canAttack = true;
-    [SerializeField] private int cooldown = 3;
+    [SerializeField] private int attackTimeout = 3;
     [Header("Movement")]
     public float moveSpeed;
 
@@ -38,6 +40,7 @@ public class PlayerController : MonoBehaviour
     public KeyCode houseKey = KeyCode.H;
 
     [Header("Ground Check")]
+    public PlayerCollider gCheck;
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask whatIsGround;
@@ -85,8 +88,10 @@ public class PlayerController : MonoBehaviour
             _hudMenu = GameStateManager.Instance.hudMenu;
         }
         //ground check
-        //grounded = Physics.Raycast(transform.position + new Vector3(0, 0.5f, 0), Vector3.down, (playerHeight * 0.5f) + 0.3f, whatIsGround);
-        grounded = true;
+        //grounded = Physics.Raycast(transform.position + new Vector3(0, -1, 0), Vector3.down, 1f);
+        //Debug.DrawRay(transform.position + new Vector3(0, -1f, 0), Vector3.down, Color.yellow);
+        Debug.Log($"isGrounded: {gCheck.grounded}");
+        grounded = gCheck.grounded;
         //Physics.CheckSphere(groundCheck.position, groundDistance, whatIsGround);
 
         MyInput();
@@ -263,7 +268,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator AttackCooldown()
     {
         //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(cooldown);
+        yield return new WaitForSeconds(attackTimeout);
         canAttack = true;
     }
 }
