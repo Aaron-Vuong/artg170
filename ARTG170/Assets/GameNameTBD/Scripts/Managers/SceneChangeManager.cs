@@ -15,6 +15,8 @@ public class SceneChangeManager : MonoBehaviour
         MainGameScene,
         Loading,
         MainMenuScene,
+        HouseLevel,
+        Level2,
         GameOver
     }
 

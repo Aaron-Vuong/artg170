@@ -20,7 +20,7 @@ public class MobStats : MonoBehaviour
         {
             Destroy(gameObject);
 
-            SceneChangeManager.Load(SceneChangeManager.Scene.GameOver);
+           //SceneChangeManager.Load(SceneChangeManager.Scene.GameOver);
         }
         Debug.Log("Got Hit!");
         StartCoroutine("Damaged");
