@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement; 
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource playerAudioSource;
     [SerializeField] private AudioClip weaponAttackSoundClip;
     [SerializeField] private AudioClip interactSoundClip;
+   
 
     [Header("Camera")]
     [SerializeField] private Camera _camera;
@@ -193,9 +194,14 @@ public class PlayerController : MonoBehaviour
     {
         //calculate movement
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
+        
+           
+        
+   
         if (grounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+            
            // Debug.Log("grounded");
 
         }
@@ -306,4 +312,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(attackTimeout);
         canAttack = true;
     }
+
+    
 }
