@@ -5,12 +5,15 @@ using UnityEngine;
 public class MobStats : MonoBehaviour
 {
     [SerializeField] private float health = 3;
-    private ParticleSystem _particleSystem;
+    [SerializeField] private ParticleSystem _particleSystem;
     public float damagedIndicatorTime = 2;
 
     private void Start()
     {
-        _particleSystem = GetComponent<ParticleSystem>();
+        if (_particleSystem == null)
+        {
+            _particleSystem = GetComponent<ParticleSystem>();
+        }
     }
     public void TakeDamage()
     {

@@ -14,6 +14,8 @@ public class MainMenu : MenuManager
 
     [SerializeField] private Logger _logger;
     [SerializeField] private PlayerCam _playerCam;
+    [SerializeField] private PlayerController _playerController;
+
 
     protected override void InnerAwake()
     {
@@ -39,7 +41,7 @@ public class MainMenu : MenuManager
         // TODO: Loading Screen Scene -> Main Game Scene.
         _uiManager.GoToMenu(GameMenu.GameHUD);
         SceneChangeManager.Load(SceneChangeManager.Scene.MainGameScene);
-
+        _playerController.spawned = false;
     }
 
     // TODO FIX PERMISSIONS

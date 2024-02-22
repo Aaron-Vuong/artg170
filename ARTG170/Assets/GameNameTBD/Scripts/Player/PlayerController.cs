@@ -39,7 +39,8 @@ public class PlayerController : MonoBehaviour
     public float jumpCooldown;
     public float airMultiplier;
     bool readyToJump;
-
+    public bool spawned = true;
+    List<GameObject> visited_spawnPoints = new List<GameObject>();
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -52,7 +53,7 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
     public float groundDistance = 1f;
     public LayerMask whatIsGround;
-    bool grounded;
+    public bool grounded;
 
     public Transform orientation;
     float horizontalInput;
@@ -78,6 +79,11 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (!spawned)
+        {
+            Debug.Log("Placing Player in specific SpawnPoint location!");
+            spawned = placePlayerAtSpawnPoint(Vector3.zero);
+        }
         RaycastHit hit;
         if (_camera == null)
         {
@@ -156,6 +162,36 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public bool placePlayerAtSpawnPoint(Vector3? new_position)
+    {
+        if (new_position == null)
+        {
+            // Hard Code for level2. Will need to add an extra IF here to check if we do level 3
+            transform.position = new Vector3(14.9f, -2.4f, -46.99f);
+            return true;
+        }
+
+        // TODO: Poll for a different scene and then grab all spawnpoints to fix level2 hardcode.
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        Debug.Log($"{spawnPoints}");
+        if (spawnPoints.Length > 0) {
+            GameObject target_spawn = spawnPoints[spawnPoints.Length - 1];
+            // Add this to the list of visited spawn points.
+            visited_spawnPoints.Add(target_spawn);
+            Debug.Log($"Changing player position to {target_spawn.transform.position}");
+            transform.position = target_spawn.transform.position;
+            return true;
+        }
+        else
+        {
+            Debug.Log("SpawnPoints not present! Can't move player to valid position!");
+            return false;
+        }
+
+    }
+
+
+
     private void FixedUpdate()
     {
         MovePlayer();
@@ -187,6 +223,7 @@ public class PlayerController : MonoBehaviour
        if(Input.GetKeyDown(houseKey))
         {
             _hudMenu.loadHouse();
+            spawned = false;
         }
     }
 
@@ -249,7 +286,9 @@ public class PlayerController : MonoBehaviour
             Debug.Log($"Hit Something! {hit.collider.gameObject.name}");
             if (hit.collider != null)
             {
-                if (hit.collider.gameObject.tag == "Pickup" && !_inventory.isFull())
+                Debug.Log(hit.collider.gameObject.tag == "Pickup");
+                Debug.Log(!_inventory.isFull());
+                if (hit.collider.gameObject.tag == "Pickup") //&& !_inventory.isFull())
                 {
                     // If there are slots in your inventory.
                     // Despawn model
@@ -313,5 +352,11 @@ public class PlayerController : MonoBehaviour
         canAttack = true;
     }
 
-    
+
+    public void loadLevel2()
+    {
+        SceneChangeManager.Load(SceneChangeManager.Scene.Level2);
+        placePlayerAtSpawnPoint(null);
+    }
+
 }

@@ -41,6 +41,7 @@ public class HUDMenu : MenuManager
     [Header("Scene")]
     public bool inHouseLevel = false;
     private string lastGameSceneName;
+    [SerializeField] private PlayerController _controller;
     protected override void InnerAwake()
     {
         menuType = GameMenu.GameHUD;
@@ -186,12 +187,16 @@ public class HUDMenu : MenuManager
             lastGameSceneName = lastGameScene.name;
             Debug.Log($"Saved Last Scene as {lastGameSceneName}");
             SceneManager.LoadScene("HouseLevel");
+            _controller.spawned = false;
             inHouseLevel = true;
         }
         else {
             SceneManager.LoadScene(lastGameSceneName);
+            // TODO: Apply Scene Persistence between scenes (player position, which coins have been picked up, and if enemy is killed.)
             inHouseLevel = false;
+            _controller.spawned = false;
         }
 
     }
+
 }

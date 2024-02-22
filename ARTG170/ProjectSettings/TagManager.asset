@@ -10,6 +10,7 @@ TagManager:
   - Pickup
   - Orientation
   - PlayerCollider
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX
