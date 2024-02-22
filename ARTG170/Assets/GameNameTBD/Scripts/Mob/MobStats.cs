@@ -6,6 +6,7 @@ public class MobStats : MonoBehaviour
 {
     [SerializeField] private float health = 3;
     [SerializeField] private ParticleSystem _particleSystem;
+    [SerializeField] public GameObject doorway;
     public float damagedIndicatorTime = 2;
 
     private void Start()
@@ -21,7 +22,9 @@ public class MobStats : MonoBehaviour
         // Play particles.
         if (health == 0)
         {
+            doorway.SetActive(true);
             Destroy(gameObject);
+
 
            //SceneChangeManager.Load(SceneChangeManager.Scene.GameOver);
         }
