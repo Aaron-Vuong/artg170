@@ -12,7 +12,10 @@ public class PlayerController : MonoBehaviour
     private AudioSource playerAudioSource;
     [SerializeField] private AudioClip weaponAttackSoundClip;
     [SerializeField] private AudioClip interactSoundClip;
-   
+
+    [Header("Weapons")]
+    [SerializeField] private GameObject dagger;
+    private Animation daggerAnimation;
 
     [Header("Camera")]
     [SerializeField] private Camera _camera;
@@ -72,7 +75,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         playerAudioSource = GetComponent<AudioSource>();
-
+        daggerAnimation = dagger.GetComponent<Animation>();
         readyToJump = true;
     }
 
@@ -157,8 +160,12 @@ public class PlayerController : MonoBehaviour
                     hit.collider.gameObject.GetComponent<MobStats>().TakeDamage();
                 }
             }
+            //play animation
+            daggerAnimation.Play();
             // Play audio for the swing of the weapon.
             playerAudioSource.PlayOneShot(weaponAttackSoundClip);
+
+
         }
     }
 
