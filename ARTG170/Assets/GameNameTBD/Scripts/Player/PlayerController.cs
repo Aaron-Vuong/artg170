@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource playerAudioSource;
     [SerializeField] private AudioClip weaponAttackSoundClip;
     [SerializeField] private AudioClip interactSoundClip;
+    [SerializeField] private AudioClip damageSoundClip;
 
     [Header("Weapons")]
     [SerializeField] private GameObject dagger;
@@ -158,12 +159,14 @@ public class PlayerController : MonoBehaviour
                 {
                     // Use the hit variable to determine what was clicked on.
                     hit.collider.gameObject.GetComponent<MobStats>().TakeDamage();
+                    //play animation
+                    daggerAnimation.Play();
+                    // Play audio for the swing of the weapon.
+                    playerAudioSource.PlayOneShot(weaponAttackSoundClip);
                 }
             }
-            //play animation
-            daggerAnimation.Play();
-            // Play audio for the swing of the weapon.
-            playerAudioSource.PlayOneShot(weaponAttackSoundClip);
+
+            
 
 
         }
@@ -330,6 +333,7 @@ public class PlayerController : MonoBehaviour
     public void SubtractHealth()
     {
         health -= 1;
+        playerAudioSource.PlayOneShot(damageSoundClip);
         _hudMenu.SetHealth(health, maxHealth);
         if (health == 0)
         {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
@@ -11,7 +12,12 @@ public class BasicFollow : MonoBehaviour
 
 
     [Header("Attack")]
-    [SerializeField] private GameObject _eyeCast; 
+    [SerializeField] private GameObject _eyeCast;
+
+    [SerializeField] private AudioSource moveSound;
+    [SerializeField] private AudioClip moving;
+
+
 
     private GameObject player;
     int layerMask;
@@ -22,7 +28,8 @@ public class BasicFollow : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("PlayerCollider");
         layerMask = 1 << 10;
         layerMask = ~layerMask;
-        
+        moveSound.clip = moving;
+        moveSound.Play();
     }
 
     // Update is called once per frame
@@ -30,6 +37,7 @@ public class BasicFollow : MonoBehaviour
     {
         PointToPlayer();
         DetectPlayer();
+        
     }
     private void PointToPlayer()
     {
@@ -46,9 +54,11 @@ public class BasicFollow : MonoBehaviour
             Debug.Log($"HIT THE PLAYER! {hit.collider.gameObject.tag}");
             if (hit.collider.gameObject.tag == "PlayerCollider")
             {
+               
                 Debug.Log("Finding Player!");
                 Debug.DrawRay(origin, direction, Color.blue);
                 transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, 1, transform.position.z), new Vector3(player.transform.position.x, 1, player.transform.position.z), speed * Time.deltaTime);
+                
             }
             else
             {

@@ -8,6 +8,9 @@ public class MobStats : MonoBehaviour
     [SerializeField] private ParticleSystem _particleSystem;
     [SerializeField] public GameObject doorway;
     public float damagedIndicatorTime = 2;
+    [SerializeField] private AudioSource monsterSound;
+    [SerializeField] private AudioClip damageSound;
+
 
     private void Start()
     {
@@ -19,6 +22,8 @@ public class MobStats : MonoBehaviour
     public void TakeDamage()
     {
         health -= 1;
+        
+        monsterSound.PlayOneShot(damageSound);
         // Play particles.
         if (health == 0)
         {
