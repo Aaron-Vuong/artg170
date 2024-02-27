@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1349
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Project
   m_RootView: {fileID: 6}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 114
+  controlID: 108
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: 45
+  controlID: 41
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 46
+  controlID: 42
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -465,7 +465,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/GameNameTBD/Assets/Materials/Level_3
+    - Assets/GameNameTBD/Assets/Textures
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -473,16 +473,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/GameNameTBD/Assets/Materials/Level_3
+  - Assets/GameNameTBD/Assets/Textures
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\knigh\Desktop\artg170\ARTG170
   m_LockTracker:
     m_IsLocked: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 128}
-    m_SelectedIDs: b86e0000
-    m_LastClickedID: 28344
-    m_ExpandedIDs: 000000005465000056650000586500005a6500005c6500005e65000060650000626500006465000066650000686500006a6500006c6500006e65000070650000846500009665000000ca9a3b
+    scrollPos: {x: 0, y: 20}
+    m_SelectedIDs: aa650000
+    m_LastClickedID: 26026
+    m_ExpandedIDs: 000000001e650000206500002265000026650000286500002a6500002c6500002e6500003465000036650000386500003a6500009a65000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -510,7 +510,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000005465000056650000586500005a6500005c6500005e65000060650000626500006465000066650000686500006a6500006c6500006e65000070650000
+    m_ExpandedIDs: 000000001e65000020650000226500002465000026650000286500002a6500002c6500002e65000030650000326500003465000036650000386500003a650000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -650,9 +650,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 96f2ffff
-      m_LastClickedID: -3434
-      m_ExpandedIDs: 8af3ffff22f6ffff1afbffff
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+      m_ExpandedIDs: 1afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1110,9 +1110,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 98.37142, y: 9.880932, z: -225.81757}
+    m_Target: {x: 216.02446, y: 17.086535, z: 0.02437973}
     speed: 2
-    m_Value: {x: 98.37142, y: 9.880932, z: -225.81757}
+    m_Value: {x: 216.02446, y: 17.086535, z: 0.02437973}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1158,13 +1158,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.023321103, y: 0.9734973, z: -0.11590309, w: 0.19590698}
+    m_Target: {x: -0.018500695, y: -0.63776386, z: 0.015285808, w: -0.76990235}
     speed: 2
-    m_Value: {x: 0.023026627, y: 0.97364384, z: -0.11443962, w: 0.19593647}
+    m_Value: {x: -0.018522972, y: -0.6365866, z: 0.015257519, w: -0.7708318}
   m_Size:
-    m_Target: 226.23038
+    m_Target: 94.93085
     speed: 2
-    m_Value: 226.23038
+    m_Value: 90.84292
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -1253,10 +1253,10 @@ MonoBehaviour:
     m_VAllowExceedBaseRangeMin: 1
     m_VAllowExceedBaseRangeMax: 1
     m_ScaleWithWindow: 0
-    m_HSlider: 0
-    m_VSlider: 0
+    m_HSlider: 1
+    m_VSlider: 1
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -1267,18 +1267,18 @@ MonoBehaviour:
       y: 21
       width: 1596
       height: 912
-    m_Scale: {x: 1.0609, y: 1.0609}
-    m_Translation: {x: 823.868, y: 455.99997}
+    m_Scale: {x: 1.092727, y: 1.092727}
+    m_Translation: {x: 780.66003, y: 464.2527}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -776.5746
-      y: -429.82373
-      width: 1504.383
-      height: 859.64746
+      x: -714.41455
+      y: -424.857
+      width: 1460.5662
+      height: 834.60925
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_LastWindowPixelSize: {x: 1596, y: 933}
