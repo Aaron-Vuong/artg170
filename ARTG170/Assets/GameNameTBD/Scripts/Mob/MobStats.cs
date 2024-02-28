@@ -10,6 +10,7 @@ public class MobStats : MonoBehaviour
     public float damagedIndicatorTime = 2;
     [SerializeField] private AudioSource monsterSound;
     [SerializeField] private AudioClip damageSound;
+    [SerializeField] private AudioClip deathSound;
 
 
     private void Start()
@@ -27,6 +28,7 @@ public class MobStats : MonoBehaviour
         // Play particles.
         if (health == 0)
         {
+            monsterSound.PlayOneShot(deathSound);
             doorway.SetActive(true);
             Destroy(gameObject);
 

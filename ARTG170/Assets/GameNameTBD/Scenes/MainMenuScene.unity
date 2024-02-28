@@ -847,7 +847,7 @@ PrefabInstance:
     - target: {fileID: 3480287661232448060, guid: 55817f51c214c4c4d8a272858c95ad29, type: 3}
       propertyPath: damageSoundClip
       value: 
-      objectReference: {fileID: 8300000, guid: b5899b93f40e5434aa6850d8f0130729, type: 3}
+      objectReference: {fileID: 8300000, guid: a0a0095300a550e49a92c088722ffd6a, type: 3}
     - target: {fileID: 4837524380118641840, guid: 55817f51c214c4c4d8a272858c95ad29, type: 3}
       propertyPath: m_Volume
       value: 1
@@ -1056,6 +1056,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1417833837}
   - component: {fileID: 1417833838}
+  - component: {fileID: 1417833839}
   m_Layer: 5
   m_Name: UI Camera
   m_TagString: Untagged
@@ -1087,7 +1088,7 @@ Camera:
   m_GameObject: {fileID: 1417833836}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 3
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -1129,6 +1130,15 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!45 &1417833839
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417833836}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 2100000, guid: cdbb40e11399e4a17882ada20a1b896a, type: 2}
 --- !u!224 &1447994821 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4715806501826663169, guid: 600bc14d35d53dc4e862348ea8362342, type: 3}

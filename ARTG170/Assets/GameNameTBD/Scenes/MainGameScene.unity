@@ -244,9 +244,9 @@ Transform:
   m_GameObject: {fileID: 204146451}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.28, y: 10.98, z: -49.36}
-  m_LocalScale: {x: 10.31, y: 10.31, z: 10.31}
-  m_ConstrainProportionsScale: 1
+  m_LocalPosition: {x: 24.28, y: 8.68, z: -49.5}
+  m_LocalScale: {x: 10.639999, y: 12.3, z: 10.639999}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3597,9 +3597,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 204146451}
     - target: {fileID: 1216082036268968818, guid: 99fbfdfe0d13929498c269f732e34bc4, type: 3}
+      propertyPath: deathSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 1ad78d27a0dd61d49b70c34af09b07c5, type: 3}
+    - target: {fileID: 1216082036268968818, guid: 99fbfdfe0d13929498c269f732e34bc4, type: 3}
       propertyPath: damageSound
       value: 
-      objectReference: {fileID: 8300000, guid: 948ed1c458a85de4cb1e71ccb505db86, type: 3}
+      objectReference: {fileID: 8300000, guid: 1ed8096663cee3449a68e40c0e5c97b7, type: 3}
     - target: {fileID: 1216082036268968818, guid: 99fbfdfe0d13929498c269f732e34bc4, type: 3}
       propertyPath: monsterSound
       value: 
