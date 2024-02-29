@@ -490,8 +490,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d7f289d70a84f324882e7c2100cb38fc, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 530074928}
   m_SourcePrefab: {fileID: 100100000, guid: d7f289d70a84f324882e7c2100cb38fc, type: 3}
+--- !u!1 &530074927 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d7f289d70a84f324882e7c2100cb38fc, type: 3}
+  m_PrefabInstance: {fileID: 530074926}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &530074928
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530074927}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.29217565, y: 0.006699228, z: 0.10768035}
+  m_Center: {x: 0.038357005, y: -0.04904416, z: -0.04772333}
 --- !u!1 &567594912 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1340284007832318449, guid: 6d5817ddebec1604183219ae480c16ae, type: 3}
@@ -1572,7 +1601,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1684098779}
   m_Layer: 0
-  m_Name: SpawnPoint
+  m_Name: SpawnPoint House
   m_TagString: SpawnPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1587,7 +1616,7 @@ Transform:
   m_GameObject: {fileID: 1684098778}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.61, y: 5.51, z: -59.55}
+  m_LocalPosition: {x: -1.07, y: 6.83, z: -56.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

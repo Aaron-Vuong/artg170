@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using System.Linq;
 
 
 public class PlayerController : MonoBehaviour
@@ -58,6 +60,9 @@ public class PlayerController : MonoBehaviour
     public float groundDistance = 1f;
     public LayerMask whatIsGround;
     public bool grounded;
+
+    [Header("Player Spawn")]
+    private string current_scene = "MainMenuScene";
 
     public Transform orientation;
     float horizontalInput;
@@ -189,19 +194,27 @@ public class PlayerController : MonoBehaviour
         if (new_position == null)
         {
             // Hard Code for level2. Will need to add an extra IF here to check if we do level 3
-            transform.position = new Vector3(14.9f, -2.4f, -46.99f);
-            return true;
+            //transform.position = new Vector3(14.9f, -2.4f, -46.99f);
+            return false;
         }
-
+        Scene scene = SceneManager.GetActiveScene();
+        Debug.Log(scene.name);
+        // We poll for a different scene.
+        if (scene == null || scene.name == current_scene || scene.name == "Loading")
+        {
+            return false;
+        }
         // TODO: Poll for a different scene and then grab all spawnpoints to fix level2 hardcode.
         GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
         Debug.Log($"{spawnPoints}");
         if (spawnPoints.Length > 0) {
             GameObject target_spawn = spawnPoints[spawnPoints.Length - 1];
+            Debug.Log(target_spawn.name);
             // Add this to the list of visited spawn points.
             visited_spawnPoints.Add(target_spawn);
             Debug.Log($"Changing player position to {target_spawn.transform.position}");
             transform.position = target_spawn.transform.position;
+            current_scene = scene.name;
             return true;
         }
         else
@@ -338,8 +351,10 @@ public class PlayerController : MonoBehaviour
         if (storedObject != null)
         {
             _hudMenu.removeSpriteOnHotBar(selectedIdx);
-            // Place it below our feet and make visible again.
-            storedObject.transform.position = new Vector3(transform.position.x, 4, transform.position.z);
+            // Place it above our head and make visible again.
+            storedObject.transform.position = new Vector3(transform.position.x, transform.position.y + 4, transform.position.z);
+            // Rotate so it bounces off the player's head.
+            storedObject.transform.rotation = new Quaternion(45f, 45f, 45f, 45f);
             storedObject.SetActive(true);
         }
     }
@@ -381,7 +396,14 @@ public class PlayerController : MonoBehaviour
     public void loadLevel2()
     {
         SceneChangeManager.Load(SceneChangeManager.Scene.Level2);
-        placePlayerAtSpawnPoint(null);
+        // IMPORTANT: Make us look for the next spawnpoint on the scene load.
+        spawned = false;
     }
 
+    public void loadLevel3()
+    {
+        SceneChangeManager.Load(SceneChangeManager.Scene.Level3);
+        // IMPORTANT: Make us look for the next spawnpoint on the scene load.
+        spawned = false;
+    }
 }
