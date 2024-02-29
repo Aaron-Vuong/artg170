@@ -2,14 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
+
+public enum MobType
+{
+    Scorpion,
+    Snake,
+    Slime
+}
 
 public class BasicFollow : MonoBehaviour
 {
     [SerializeField] private float viewDistance = 100.0f;
     [SerializeField] private float speed = 5.0f;
-
+    [SerializeField] private MobType mob_type;
 
     [Header("Attack")]
     [SerializeField] private GameObject _eyeCast;
@@ -41,8 +50,13 @@ public class BasicFollow : MonoBehaviour
     }
     private void PointToPlayer()
     {
+        //float orig_x_rotation = transform.rotation.x;
+        Debug.Log(transform.rotation);
         Vector3 horizontalLook = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
         transform.LookAt(horizontalLook);
+        // TODO: This is a simple modeling change to apply rotation. Hardcoded for snake.
+        if (mob_type == MobType.Snake) { transform.RotateAround(transform.position, transform.right, -90); }
+        //transform.rotation = new Quaternion(orig_x_rotation, transform.rotation.y, transform.rotation.z, transform.rotation.w);
     }
     private void DetectPlayer()
     {
@@ -57,7 +71,7 @@ public class BasicFollow : MonoBehaviour
                
                 Debug.Log("Finding Player!");
                 Debug.DrawRay(origin, direction, Color.blue);
-                transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, 1, transform.position.z), new Vector3(player.transform.position.x, 1, player.transform.position.z), speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z), speed * Time.deltaTime);
                 
             }
             else
