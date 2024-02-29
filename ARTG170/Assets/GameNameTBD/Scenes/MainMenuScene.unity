@@ -590,7 +590,7 @@ Camera:
   m_GameObject: {fileID: 826430815}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 3
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -1088,7 +1088,7 @@ Camera:
   m_GameObject: {fileID: 1417833836}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 3
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -2012,7 +2012,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5342807106609390162, guid: 14a8ea62ac33f294cb14dd32b010040f, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -484.00003
+      value: -484
       objectReference: {fileID: 0}
     - target: {fileID: 6064475373883821191, guid: 14a8ea62ac33f294cb14dd32b010040f, type: 3}
       propertyPath: m_Pivot.x

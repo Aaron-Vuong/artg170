@@ -331,6 +331,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponAttackSoundClip: {fileID: 8300000, guid: 1aabc400183be2d44b097b4e39b6d889, type: 3}
   interactSoundClip: {fileID: 8300000, guid: 07801bdbcddcdd843affc8fe7da608d1, type: 3}
+  damageSoundClip: {fileID: 8300000, guid: a0a0095300a550e49a92c088722ffd6a, type: 3}
   dagger: {fileID: 2811944088537995863}
   _camera: {fileID: 0}
   _hudMenu: {fileID: 0}

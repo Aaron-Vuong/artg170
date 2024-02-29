@@ -139,6 +139,18 @@ public class PlayerController : MonoBehaviour
                 {
                     _hudMenu.displayPickupTooltip();
                 }
+                else if (hit.collider.gameObject.tag == "Chest") //chest
+                {
+                    // play chest animation
+                    // play chest sound
+
+                    Animation newAnim = hit.collider.GetComponent<Animation>();
+                    newAnim.Play();
+                    BoxCollider box = hit.collider.gameObject.GetComponent<BoxCollider>();
+                    box.enabled = false;
+                    // Play audio for the swing of the weapon.
+                    playerAudioSource.PlayOneShot(interactSoundClip);
+                }
                 else {
                     _hudMenu.hidePickupTooltip();
                 }
@@ -313,6 +325,8 @@ public class PlayerController : MonoBehaviour
                     // Play audio for the swing of the weapon.
                     playerAudioSource.PlayOneShot(interactSoundClip);
                 }
+               
+
             }
         }
     }

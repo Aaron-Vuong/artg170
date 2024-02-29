@@ -11,6 +11,7 @@ TagManager:
   - Orientation
   - PlayerCollider
   - SpawnPoint
+  - Chest
   layers:
   - Default
   - TransparentFX

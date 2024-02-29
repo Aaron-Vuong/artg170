@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5bd11217e3acbb64784960f52ec8da37, type: 3}
-  m_Name: Knife
+  m_Name: CrystalBall
   m_EditorClassIdentifier: 
-  itemName: Knife
-  icon: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  prefab: {fileID: -927199367670048503, guid: abeb44353c542a94d927c1d8e42cbbe9, type: 3}
+  itemName: MagicBall
+  icon: {fileID: 21300000, guid: 5a56206f70a1d3b49bd83de8103b8d8d, type: 3}
+  prefab: {fileID: 919132149155446097, guid: ae161dce48a94a144bd2c4312ee6d5c4, type: 3}
   numAmount: 1
-  description: A knife.
+  description: New Furniture item.
