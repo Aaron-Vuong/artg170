@@ -31,12 +31,12 @@ public class MainMenu : MenuManager
         UnityEngine.Assertions.Assert.IsNotNull(_btnSettings);
         UnityEngine.Assertions.Assert.IsNotNull(_btnExit);
 
-        _btnStart.onClick.AddListener(OnStartGame);
+        //_btnStart.onClick.AddListener(OnStartGame);    Will have different button this will now start the narrative part which is in this scene
         _btnSettings.onClick.AddListener(OnDisplayOptionsMenu);
         _btnExit.onClick.AddListener(OnExitGame);
     }
 
-    private void OnStartGame()
+    public void OnStartGame()
     {
         // TODO: Loading Screen Scene -> Main Game Scene.
         _uiManager.GoToMenu(GameMenu.GameHUD);

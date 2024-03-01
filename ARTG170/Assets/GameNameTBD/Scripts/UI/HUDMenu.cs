@@ -31,6 +31,7 @@ public class HUDMenu : MenuManager
     [Header("Inventory Hotbar")]
     [SerializeField] private int _numSlots = 5;
     [SerializeField] private int _slotSpacing = 0;
+ 
     [SerializeField] private List<Vector2> _slots;
     [SerializeField] private List<UnityEngine.UI.Image> _itemImages;
     [SerializeField] private Transform _hotbarOrigin;
