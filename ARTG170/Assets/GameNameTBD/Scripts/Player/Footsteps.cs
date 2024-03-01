@@ -15,10 +15,7 @@ public class Footsteps : MonoBehaviour
         {
             //footstepsSound.clip = clip;
             footstepsSound.enabled = true;
-            if (Input.GetKey(KeyCode.Space))
-            {
-                footstepsSound.enabled = false;
-            }
+            
         }
         else
         {

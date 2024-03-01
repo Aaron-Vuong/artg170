@@ -17,6 +17,7 @@ public class HUDMenu : MenuManager
     [SerializeField] private Canvas _canvas;
     [SerializeField] private int _selectedIndex = 0;
 
+
     [Header("Player Camera")]
     [SerializeField] private PlayerCam _playerCam;
     [Header("Player Info")]
@@ -86,7 +87,7 @@ public class HUDMenu : MenuManager
         if (_numSlots % 2 == 0) { isEven  = true; }
 
         // This DOES NOT factor rotation! (Hotbar should always be flat/same y.)
-        slotOffset = ((_slotImage.bounds.max.x - _slotImage.bounds.min.x) / _offsetFactor) + _slotSpacing;
+        slotOffset = ((_slotImage.bounds.max.x - _slotImage.bounds.min.x) / _offsetFactor) + _slotSpacing - 150;
         Debug.Log($"Offset of the slot: {slotOffset}");
 
         // Handle tiles on the left + right of origin.
@@ -95,7 +96,8 @@ public class HUDMenu : MenuManager
         if (!isEven) { rightSlots += 1; }
         for (int slotIdx = -offCenterSlots; slotIdx < rightSlots; slotIdx++)
         {
-            Vector3 slotPosition = new Vector3((slotOffset * slotIdx), _hotbarOrigin.transform.position.y, 10);
+            //bug happened when I changed everything over to Overlay from Camera so this is my fix for showing TA
+            Vector3 slotPosition = new Vector3((slotOffset * slotIdx) + 900, _hotbarOrigin.transform.position.y, 0);
             // Generate a new tile.
             GameObject newSlot = new GameObject();
             newSlot.name = $"Slot {slotIdx + offCenterSlots}";

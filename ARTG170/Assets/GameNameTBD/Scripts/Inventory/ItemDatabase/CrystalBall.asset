@@ -15,5 +15,5 @@ MonoBehaviour:
   itemName: MagicBall
   icon: {fileID: 21300000, guid: 5a56206f70a1d3b49bd83de8103b8d8d, type: 3}
   prefab: {fileID: 919132149155446097, guid: ae161dce48a94a144bd2c4312ee6d5c4, type: 3}
-  numAmount: 1
+  numAmount: 2
   description: New Furniture item.

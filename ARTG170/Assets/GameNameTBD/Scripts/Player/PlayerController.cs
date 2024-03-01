@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip weaponAttackSoundClip;
     [SerializeField] private AudioClip interactSoundClip;
     [SerializeField] private AudioClip damageSoundClip;
+    [SerializeField] private AudioClip chestSoundClip;
+    [SerializeField] private AudioClip jumpSoundClip;
 
     [Header("Weapons")]
     [SerializeField] private GameObject dagger;
@@ -154,7 +156,7 @@ public class PlayerController : MonoBehaviour
                     BoxCollider box = hit.collider.gameObject.GetComponent<BoxCollider>();
                     box.enabled = false;
                     // Play audio for the swing of the weapon.
-                    playerAudioSource.PlayOneShot(interactSoundClip);
+                    playerAudioSource.PlayOneShot(chestSoundClip);
                 }
                 else {
                     _hudMenu.hidePickupTooltip();
@@ -299,10 +301,12 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
+        playerAudioSource.PlayOneShot(jumpSoundClip);
         //reset y velocity
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        
+
     }
 
     private void ResetJump()
