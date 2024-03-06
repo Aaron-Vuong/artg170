@@ -11,10 +11,11 @@ public class MobStats : MonoBehaviour
     [SerializeField] private AudioSource monsterSound;
     [SerializeField] private AudioClip damageSound;
     [SerializeField] private AudioClip deathSound;
-
+    private Animator mAnimator;
 
     private void Start()
     {
+        mAnimator = GetComponent<Animator>();
         if (_particleSystem == null)
         {
             _particleSystem = GetComponent<ParticleSystem>();
@@ -23,14 +24,13 @@ public class MobStats : MonoBehaviour
     public void TakeDamage()
     {
         health -= 1;
-        
-        monsterSound.PlayOneShot(damageSound);
+        mAnimator.SetTrigger("Damage");
         // Play particles.
         if (health == 0)
         {
             monsterSound.PlayOneShot(deathSound);
             doorway.SetActive(true);
-            Destroy(gameObject);
+            StartCoroutine("Dead");
 
 
            //SceneChangeManager.Load(SceneChangeManager.Scene.GameOver);
@@ -40,8 +40,17 @@ public class MobStats : MonoBehaviour
     }
     IEnumerator Damaged()
     {
+       
+        monsterSound.PlayOneShot(damageSound);
         _particleSystem.Play();
         yield return new WaitForSeconds(damagedIndicatorTime);
         _particleSystem.Stop();
     }
+    IEnumerator Dead()
+    {
+       
+        yield return new WaitForSeconds(1);
+        Destroy(gameObject);
+    }
+   
 }

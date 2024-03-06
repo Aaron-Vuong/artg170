@@ -25,6 +25,8 @@ public class BasicFollow : MonoBehaviour
 
     [SerializeField] private AudioSource moveSound;
     [SerializeField] private AudioClip moving;
+    private Animator mAnimator;
+    private bool isWalking = false;
 
 
 
@@ -38,7 +40,8 @@ public class BasicFollow : MonoBehaviour
         layerMask = 1 << 10;
         layerMask = ~layerMask;
         moveSound.clip = moving;
-        moveSound.Play();
+       
+        mAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -46,16 +49,22 @@ public class BasicFollow : MonoBehaviour
     {
         PointToPlayer();
         DetectPlayer();
-        
+        if (isWalking)
+        { 
+            moveSound.Play();
+            mAnimator.SetTrigger("Walk");
+        }
+       
     }
     private void PointToPlayer()
     {
         //float orig_x_rotation = transform.rotation.x;
-        Debug.Log(transform.rotation);
+        //Debug.Log(transform.rotation);
         Vector3 horizontalLook = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
         transform.LookAt(horizontalLook);
         // TODO: This is a simple modeling change to apply rotation. Hardcoded for snake.
         if (mob_type == MobType.Snake) { transform.RotateAround(transform.position, transform.right, -90); }
+        
         //transform.rotation = new Quaternion(orig_x_rotation, transform.rotation.y, transform.rotation.z, transform.rotation.w);
     }
     private void DetectPlayer()
@@ -68,14 +77,15 @@ public class BasicFollow : MonoBehaviour
             Debug.Log($"HIT THE PLAYER! {hit.collider.gameObject.tag}");
             if (hit.collider.gameObject.tag == "PlayerCollider")
             {
-               
+                
                 Debug.Log("Finding Player!");
                 Debug.DrawRay(origin, direction, Color.blue);
                 transform.position = Vector3.MoveTowards(new Vector3(transform.position.x, transform.position.y, transform.position.z), new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z), speed * Time.deltaTime);
-                
+                isWalking = true;
             }
             else
             {
+                
                 Debug.DrawRay(origin, direction, Color.red);
             }
         }

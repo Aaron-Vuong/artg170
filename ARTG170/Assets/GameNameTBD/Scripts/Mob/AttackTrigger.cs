@@ -9,13 +9,21 @@ public class AttackTrigger : MonoBehaviour
 
     [SerializeField] private bool canAttack = true;
     [SerializeField] private int cooldown = 3;
+    [SerializeField] GameObject monster;
+    private Animator mAnimator;
+    private void Start()
+    {
+        mAnimator = monster.GetComponent<Animator>();
+    }
 
     private void OnTriggerEnter(Collider other)
-    {
+    { 
+       
         Attack(other);
     }
     private void OnTriggerStay(Collider other)
     {
+       
         Attack(other);
     }
 
@@ -23,6 +31,7 @@ public class AttackTrigger : MonoBehaviour
     {
         if (other.gameObject.tag == "PlayerCollider" && canAttack)
         {
+            mAnimator.SetTrigger("Attack");
             other.gameObject.transform.parent.GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius);
             other.gameObject.transform.parent.GetComponent<PlayerController>().SubtractHealth();
             // Start cooling down for the next attack.
