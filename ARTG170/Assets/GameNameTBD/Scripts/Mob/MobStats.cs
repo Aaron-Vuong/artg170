@@ -49,7 +49,7 @@ public class MobStats : MonoBehaviour
     IEnumerator Dead()
     {
        
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(.05f);
         Destroy(gameObject);
     }
    

@@ -370,7 +370,8 @@ public class PlayerController : MonoBehaviour
         _hudMenu.SetHealth(health, maxHealth);
         if (health == 0)
         {
-            SceneChangeManager.Load(SceneChangeManager.Scene.GameOver);
+            SceneChangeManager.Load(SceneChangeManager.Scene.MainGameScene);
+            spawned = false;
         }
     }
 

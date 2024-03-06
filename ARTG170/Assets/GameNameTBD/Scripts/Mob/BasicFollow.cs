@@ -40,7 +40,7 @@ public class BasicFollow : MonoBehaviour
         layerMask = 1 << 10;
         layerMask = ~layerMask;
         moveSound.clip = moving;
-       
+        moveSound.Play();
         mAnimator = GetComponent<Animator>();
     }
 
@@ -50,8 +50,8 @@ public class BasicFollow : MonoBehaviour
         PointToPlayer();
         DetectPlayer();
         if (isWalking)
-        { 
-            moveSound.Play();
+        {
+            //Debug.Log("iswalking");
             mAnimator.SetTrigger("Walk");
         }
        
@@ -63,7 +63,7 @@ public class BasicFollow : MonoBehaviour
         Vector3 horizontalLook = new Vector3(player.transform.position.x, transform.position.y, player.transform.position.z);
         transform.LookAt(horizontalLook);
         // TODO: This is a simple modeling change to apply rotation. Hardcoded for snake.
-        if (mob_type == MobType.Snake) { transform.RotateAround(transform.position, transform.right, -90); }
+        if (mob_type == MobType.Snake) { transform.RotateAround(transform.position, transform.right, 0); }
         
         //transform.rotation = new Quaternion(orig_x_rotation, transform.rotation.y, transform.rotation.z, transform.rotation.w);
     }

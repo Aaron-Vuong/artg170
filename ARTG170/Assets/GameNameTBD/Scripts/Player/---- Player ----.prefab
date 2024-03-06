@@ -332,6 +332,8 @@ MonoBehaviour:
   weaponAttackSoundClip: {fileID: 8300000, guid: 1aabc400183be2d44b097b4e39b6d889, type: 3}
   interactSoundClip: {fileID: 8300000, guid: 07801bdbcddcdd843affc8fe7da608d1, type: 3}
   damageSoundClip: {fileID: 8300000, guid: a0a0095300a550e49a92c088722ffd6a, type: 3}
+  chestSoundClip: {fileID: 0}
+  jumpSoundClip: {fileID: 0}
   dagger: {fileID: 2811944088537995863}
   _camera: {fileID: 0}
   _hudMenu: {fileID: 0}
@@ -654,15 +656,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: abeb44353c542a94d927c1d8e42cbbe9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.486
+      value: 0.648
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: abeb44353c542a94d927c1d8e42cbbe9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.323
+      value: 0.717
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: abeb44353c542a94d927c1d8e42cbbe9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.244
+      value: 2.765
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: abeb44353c542a94d927c1d8e42cbbe9, type: 3}
       propertyPath: m_LocalRotation.y
