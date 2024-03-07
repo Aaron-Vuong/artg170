@@ -339,6 +339,7 @@ public class PlayerController : MonoBehaviour
                     ItemInstance itemInstance = hit.collider.GetComponent<ItemInstance>();
                     Debug.Log($"ITEM INSTANCE1: {itemInstance}");
                     hit.collider.gameObject.SetActive(false);
+                    hit.collider.gameObject.transform.parent = transform;
                     _hudMenu.displaySpriteOnHotbar(itemInstance.itemType.icon, _hudMenu.getSelectedSlotIndex());
                     _inventory.AddItem(hit.collider.gameObject, _hudMenu.getSelectedSlotIndex());
 
@@ -355,12 +356,15 @@ public class PlayerController : MonoBehaviour
     {
         int selectedIdx = _hudMenu.getSelectedSlotIndex();
         GameObject storedObject = _inventory.RemoveItem(selectedIdx);
+        Debug.Log($"Item: {storedObject} was dropped!");
         if (storedObject != null)
         {
             Debug.Log("not null");
             _hudMenu.removeSpriteOnHotBar(selectedIdx);
             // Re-enable physics on this object.
             storedObject.GetComponent<Rigidbody>().isKinematic = false;
+            // Re-parent to scene;
+            storedObject.transform.parent = null;
             // Place it above our head and make visible again.
             storedObject.transform.position = new Vector3(transform.position.x, transform.position.y + 4, transform.position.z);
             // Rotate so it bounces off the player's head.
