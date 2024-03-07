@@ -4208,6 +4208,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 5289305393473189747}
     - target: {fileID: 8096596115078667335, guid: 99fbfdfe0d13929498c269f732e34bc4, type: 3}
+      propertyPath: viewDistance
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 8096596115078667335, guid: 99fbfdfe0d13929498c269f732e34bc4, type: 3}
       propertyPath: walkAnimation
       value: 
       objectReference: {fileID: 0}

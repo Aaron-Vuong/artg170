@@ -12,6 +12,7 @@ TagManager:
   - PlayerCollider
   - SpawnPoint
   - Chest
+  - Furniture
   layers:
   - Default
   - TransparentFX

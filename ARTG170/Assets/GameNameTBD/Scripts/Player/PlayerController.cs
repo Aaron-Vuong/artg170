@@ -146,6 +146,10 @@ public class PlayerController : MonoBehaviour
                 {
                     _hudMenu.displayPickupTooltip();
                 }
+                else if(hit.collider.gameObject.tag == "Furniture")
+                {
+                    _hudMenu.displayFurnitureTooltip();
+                }
                 else if (hit.collider.gameObject.tag == "Chest") //chest
                 {
                     // play chest animation
@@ -155,17 +159,19 @@ public class PlayerController : MonoBehaviour
                     newAnim.Play();
                     BoxCollider box = hit.collider.gameObject.GetComponent<BoxCollider>();
                     box.enabled = false;
-                    // Play audio for the swing of the weapon.
+                    // Play audio for chest opening
                     playerAudioSource.PlayOneShot(chestSoundClip);
                 }
                 else {
                     _hudMenu.hidePickupTooltip();
+                    _hudMenu.hideFurnitureTooltip();
                 }
                 
             }
         }
         else {
             _hudMenu.hidePickupTooltip();
+            _hudMenu.hideFurnitureTooltip();
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -339,7 +345,7 @@ public class PlayerController : MonoBehaviour
                     _hudMenu.displaySpriteOnHotbar(itemInstance.itemType.icon, _hudMenu.getSelectedSlotIndex());
                     _inventory.AddItem(hit.collider.gameObject, _hudMenu.getSelectedSlotIndex());
 
-                    // Play audio for the swing of the weapon.
+                    // Play audio for the pickup
                     playerAudioSource.PlayOneShot(interactSoundClip);
                 }
                
@@ -354,12 +360,17 @@ public class PlayerController : MonoBehaviour
         GameObject storedObject = _inventory.RemoveItem(selectedIdx);
         if (storedObject != null)
         {
+            Debug.Log("not null");
             _hudMenu.removeSpriteOnHotBar(selectedIdx);
             // Place it above our head and make visible again.
             storedObject.transform.position = new Vector3(transform.position.x, transform.position.y + 4, transform.position.z);
             // Rotate so it bounces off the player's head.
             storedObject.transform.rotation = new Quaternion(45f, 45f, 45f, 45f);
             storedObject.SetActive(true);
+        }
+        else
+        {
+            Debug.Log("null");
         }
     }
 
@@ -371,6 +382,8 @@ public class PlayerController : MonoBehaviour
         if (health == 0)
         {
             SceneChangeManager.Load(SceneChangeManager.Scene.MainGameScene);
+            health = 5;
+            _hudMenu.SetHealth(health, maxHealth);
             spawned = false;
         }
     }

@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystalBall
       objectReference: {fileID: 0}
+    - target: {fileID: 1184273551206390027, guid: 593c831a5e935f24e9ce6966cb68c974, type: 3}
+      propertyPath: m_TagString
+      value: Pickup
+      objectReference: {fileID: 0}
     - target: {fileID: 1955884030205117361, guid: 593c831a5e935f24e9ce6966cb68c974, type: 3}
       propertyPath: m_LocalPosition.x
       value: 15.900572
@@ -2439,7 +2443,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewDistance: 100
-  speed: 5
+  speed: 2
   mob_type: 1
   _eyeCast: {fileID: 1563964340}
   moveSound: {fileID: 2081583488}

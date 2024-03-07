@@ -28,6 +28,7 @@ public class HUDMenu : MenuManager
     [SerializeField] private Color _crosshairColor;
     [SerializeField] private TMP_Text _pickupTip;
     public bool isPickupVisible = false;
+    public bool isFurnitureVisible = false;
 
     [Header("Inventory Hotbar")]
     [SerializeField] private int _numSlots = 5;
@@ -172,12 +173,33 @@ public class HUDMenu : MenuManager
             _pickupTip.text = "Pickup (F)";
             isPickupVisible = true;
         }
+       
     }
 
     public void hidePickupTooltip() {
         if (isPickupVisible) {
             _pickupTip.text = "";
             isPickupVisible = false;
+        }
+        
+    }
+    public void displayFurnitureTooltip()
+    {
+       
+        if (!isFurnitureVisible)
+        {
+            _pickupTip.text = "When next to furniture, Press (G) to drop Crystal ball";
+            isFurnitureVisible = true;
+        }
+    }
+
+    public void hideFurnitureTooltip()
+    {
+        
+        if (isFurnitureVisible)
+        {
+            _pickupTip.text = "";
+            isFurnitureVisible = false;
         }
     }
 
