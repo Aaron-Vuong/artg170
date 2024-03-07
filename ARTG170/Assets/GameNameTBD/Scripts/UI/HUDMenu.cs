@@ -10,6 +10,8 @@ using System;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting.FullSerializer;
+using static UnityEditor.Progress;
+
 
 public class HUDMenu : MenuManager
 {
@@ -33,24 +35,50 @@ public class HUDMenu : MenuManager
     [Header("Inventory Hotbar")]
     [SerializeField] private int _numSlots = 5;
     [SerializeField] private int _slotSpacing = 0;
- 
+
     [SerializeField] private List<Vector2> _slots;
     [SerializeField] private List<UnityEngine.UI.Image> _itemImages;
     [SerializeField] private Transform _hotbarOrigin;
     [SerializeField] private Sprite _slotImage;
     [SerializeField] private Sprite _selectionBorderImage;
+    Dictionary<KeyCode, System.Action> keyCodeDic = new Dictionary<KeyCode, System.Action>();
     private GameObject _selectionBorder;
     private int _offsetFactor = 1;
     [Header("Scene")]
     public bool inHouseLevel = false;
     private string lastGameSceneName;
     [SerializeField] private PlayerController _controller;
+
+    // https://stackoverflow.com/questions/44101392/more-efficient-way-of-converting-keycode-alphas-to-integers
+    private void initializeHotbarKeyCodes()
+    {
+        /* Register Keycodes to to match each function to call
+         * Start at Keycode.Alpha1 to remain consistent with
+         * left-hand side of keyboard
+         * 
+         * End at the last keycode to accomodate all slots.
+         */
+        int alphaStart = 48 + 1;
+        int alphaEnd = alphaStart + _numSlots;
+
+        int paramValue = _numSlots - 1;
+        for (int i = alphaStart; i < alphaEnd; i++)
+        {
+            KeyCode tempKeyCode = (KeyCode)i;
+
+            //Use temp variable to prevent it from being captured
+            int tempParam = paramValue;
+            keyCodeDic.Add(tempKeyCode, () => updateHotbarSelection(tempParam));
+            paramValue--;
+        }
+    }
     protected override void InnerAwake()
     {
         menuType = GameMenu.GameHUD;
     }
     private void Start()
     {
+        initializeHotbarKeyCodes();
         _canvas = GetComponent<Canvas>();
         instantiateTiledHotbar();
         _selectionBorder = new GameObject();
@@ -66,7 +94,25 @@ public class HUDMenu : MenuManager
         {
             _uiManager.GoToMenu(GameMenu.Settings);
         }
-        updateHotbarSelection();
+
+        /* Update the Hotbar through keys or scroll wheel */
+        updateHotbarSelection(null);
+        //Loop through the Dictionary and check if the Registered Keycode is pressed
+        foreach (KeyValuePair<KeyCode, System.Action> entry in keyCodeDic)
+        {
+            //Check if the keycode is pressed
+            if (Input.GetKeyDown(entry.Key))
+            {
+                //Check if the key pressed exist in the dictionary key
+                if (keyCodeDic.ContainsKey(entry.Key))
+                {
+                    //Debug.Log("Pressed" + entry.Key);
+
+                    //Call the function stored in the Dictionary's value
+                    keyCodeDic[entry.Key].Invoke();
+                }
+            }
+        }
     }
 
     private void createCrosshair() {
@@ -152,11 +198,19 @@ public class HUDMenu : MenuManager
     }
 
     // TODO: Disable so it only runs on scroll event.
-    private void updateHotbarSelection()
+    private void updateHotbarSelection(int? indexToSelect)
     {
-        _selectedIndex += (int)Input.mouseScrollDelta.y;
-        if (_selectedIndex < 0 ) { _selectedIndex = _numSlots - 1; }
-        _selectedIndex = _selectedIndex % _numSlots;
+        Debug.Log($"Selecting HotBar index {indexToSelect}");
+        if (indexToSelect == null)
+        {
+            _selectedIndex += (int)Input.mouseScrollDelta.y;
+            if (_selectedIndex < 0) { _selectedIndex = _numSlots - 1; }
+            _selectedIndex = _selectedIndex % _numSlots;
+        }
+        else
+        {
+            _selectedIndex = (int)(indexToSelect % _numSlots);
+        }
         // Move the selection image to the new slot.
         Vector2 selectionImagePlacement = getInventorySlotPosition(Math.Abs(_selectedIndex));
         _selectionBorder.transform.localPosition = new Vector3(selectionImagePlacement.x, selectionImagePlacement.y, 9);

@@ -326,13 +326,16 @@ public class PlayerController : MonoBehaviour
             if (hit.collider != null)
             {
                 Debug.Log(hit.collider.gameObject.tag == "Pickup");
-                Debug.Log(!_inventory.isFull());
-                if (hit.collider.gameObject.tag == "Pickup") //&& !_inventory.isFull())
+                /* If the item can be picked up and you are hovering over an empty slot. 
+                 * TODO: Or a slot that contains the same item (increment number.)
+                 */
+                if (hit.collider.gameObject.tag == "Pickup" && _inventory.items[_hudMenu.getSelectedSlotIndex()] == null)
                 {
-                    // If there are slots in your inventory.
-                    // Despawn model
-                    // Display it in hotbar.
-                    // Manage the Inventory.
+                    /*
+                     * Despawn model
+                     * Display it in hotbar.
+                     * Manage the Inventory.
+                     */
                     ItemInstance itemInstance = hit.collider.GetComponent<ItemInstance>();
                     Debug.Log($"ITEM INSTANCE1: {itemInstance}");
                     hit.collider.gameObject.SetActive(false);
@@ -403,7 +406,6 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(attackTimeout);
         canAttack = true;
     }
-
 
     public void loadLevel2()
     {
