@@ -106,8 +106,6 @@ public class HUDMenu : MenuManager
                 //Check if the key pressed exist in the dictionary key
                 if (keyCodeDic.ContainsKey(entry.Key))
                 {
-                    //Debug.Log("Pressed" + entry.Key);
-
                     //Call the function stored in the Dictionary's value
                     keyCodeDic[entry.Key].Invoke();
                 }

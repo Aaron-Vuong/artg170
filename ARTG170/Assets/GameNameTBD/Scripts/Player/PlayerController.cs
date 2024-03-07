@@ -359,10 +359,12 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("not null");
             _hudMenu.removeSpriteOnHotBar(selectedIdx);
+            // Re-enable physics on this object.
+            storedObject.GetComponent<Rigidbody>().isKinematic = false;
             // Place it above our head and make visible again.
             storedObject.transform.position = new Vector3(transform.position.x, transform.position.y + 4, transform.position.z);
             // Rotate so it bounces off the player's head.
-            storedObject.transform.rotation = new Quaternion(45f, 45f, 45f, 45f);
+            storedObject.transform.rotation = Random.rotation;
             storedObject.SetActive(true);
         }
         else
