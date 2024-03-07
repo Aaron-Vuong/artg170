@@ -1,11 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Burst.CompilerServices;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using System.Linq;
 
 
 public class PlayerController : MonoBehaviour
@@ -199,10 +195,9 @@ public class PlayerController : MonoBehaviour
 
     public bool placePlayerAtSpawnPoint(Vector3? new_position)
     {
+        // We can request to not place a PlayerAtSpawnPoint as well.
         if (new_position == null)
         {
-            // Hard Code for level2. Will need to add an extra IF here to check if we do level 3
-            //transform.position = new Vector3(14.9f, -2.4f, -46.99f);
             return false;
         }
         Scene scene = SceneManager.GetActiveScene();
@@ -212,9 +207,9 @@ public class PlayerController : MonoBehaviour
         {
             return false;
         }
-        // TODO: Poll for a different scene and then grab all spawnpoints to fix level2 hardcode.
         GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
         Debug.Log($"{spawnPoints}");
+        // Look through all of the different spawnPoints and choose the latest one.
         if (spawnPoints.Length > 0) {
             GameObject target_spawn = spawnPoints[spawnPoints.Length - 1];
             Debug.Log(target_spawn.name);
@@ -230,7 +225,6 @@ public class PlayerController : MonoBehaviour
             Debug.Log("SpawnPoints not present! Can't move player to valid position!");
             return false;
         }
-
     }
 
 
