@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode interactKey = KeyCode.F;
     public KeyCode dropKey = KeyCode.G;
-    public KeyCode houseKey = KeyCode.H;
+    
 
     [Header("Ground Check")]
     public PlayerCollider gCheck;
@@ -257,11 +257,7 @@ public class PlayerController : MonoBehaviour
             DropItem();
         }
 
-       if(Input.GetKeyDown(houseKey))
-        {
-            _hudMenu.loadHouse();
-            spawned = false;
-        }
+       
     }
 
     private void MovePlayer()

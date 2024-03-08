@@ -30,6 +30,7 @@ public class HUDMenu : MenuManager
     [SerializeField] private Color _crosshairColor;
     [SerializeField] private TMP_Text _pickupTip;
     public bool isPickupVisible = false;
+    [SerializeField] public GameObject description;
     public bool isFurnitureVisible = false;
 
     [Header("Inventory Hotbar")]
@@ -223,6 +224,7 @@ public class HUDMenu : MenuManager
     {
         if (!isPickupVisible) {
             _pickupTip.text = "Pickup (F)";
+            description.SetActive(true);
             isPickupVisible = true;
         }
        
@@ -231,6 +233,7 @@ public class HUDMenu : MenuManager
     public void hidePickupTooltip() {
         if (isPickupVisible) {
             _pickupTip.text = "";
+            description.SetActive(false);
             isPickupVisible = false;
         }
         
