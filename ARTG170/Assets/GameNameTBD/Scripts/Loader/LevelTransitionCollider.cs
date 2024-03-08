@@ -23,6 +23,10 @@ public class LevelTransitionCollider : MonoBehaviour
             {
                 _controller.loadLevel3();
             }
+            else
+            {
+                _controller.loadHouseLevel();
+            }
 
         }
     }

@@ -422,4 +422,10 @@ public class PlayerController : MonoBehaviour
         // IMPORTANT: Make us look for the next spawnpoint on the scene load.
         spawned = false;
     }
+    public void loadHouseLevel()
+    {
+        SceneChangeManager.Load(SceneChangeManager.Scene.HouseLevel);
+        // IMPORTANT: Make us look for the next spawnpoint on the scene load.
+        spawned = false;
+    }
 }

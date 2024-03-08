@@ -341,7 +341,7 @@ MonoBehaviour:
   maxHealth: 5
   canAttack: 1
   attackTimeout: 3
-  moveSpeed: 7
+  moveSpeed: 9
   groundDrag: 7
   jumpForce: 8
   jumpCooldown: 1
@@ -350,7 +350,6 @@ MonoBehaviour:
   jumpKey: 32
   interactKey: 102
   dropKey: 103
-  houseKey: 104
   gCheck: {fileID: 6951686476864118049}
   groundCheck: {fileID: 1874649657229256771}
   groundDistance: 1
