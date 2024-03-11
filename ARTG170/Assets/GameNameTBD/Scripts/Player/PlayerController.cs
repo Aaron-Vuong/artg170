@@ -383,6 +383,7 @@ public class PlayerController : MonoBehaviour
             SceneChangeManager.Load(SceneChangeManager.Scene.MainGameScene);
             health = 5;
             _hudMenu.SetHealth(health, maxHealth);
+
             spawned = false;
         }
     }
