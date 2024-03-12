@@ -64,6 +64,13 @@ public class BasicFollow : MonoBehaviour
         transform.LookAt(horizontalLook);
         // TODO: This is a simple modeling change to apply rotation. Hardcoded for snake.
         if (mob_type == MobType.Snake) { transform.RotateAround(transform.position, transform.right, 0); }
+        if (mob_type == MobType.Slime) { 
+            transform.RotateAround(transform.position, transform.right, -90);
+            transform.RotateAround(transform.position, transform.up, 0);
+            transform.RotateAround(transform.position, Vector3.up, 90);
+
+
+         }
         
         //transform.rotation = new Quaternion(orig_x_rotation, transform.rotation.y, transform.rotation.z, transform.rotation.w);
     }

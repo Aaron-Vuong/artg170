@@ -100,6 +100,7 @@ public class PlayerController : MonoBehaviour
                 if (child.tag == "MainCamera")
                 {
                     _camera = child.GetComponent<Camera>();
+                    _camera.nearClipPlane = 0.001f;
                     break;
                 }
             }
