@@ -191,6 +191,14 @@ public class HUDMenu : MenuManager
         imageHolder.sprite = _slotImage;
     }
 
+    public void clearHotBar()
+    {
+        for (int i = 0; i < _numSlots; i++)
+        {
+            removeSpriteOnHotBar(i);
+        }
+    }
+
     public int getSelectedSlotIndex()
     {
         return Math.Abs(_selectedIndex);

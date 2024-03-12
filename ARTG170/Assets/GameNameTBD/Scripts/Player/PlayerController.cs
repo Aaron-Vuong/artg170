@@ -200,6 +200,10 @@ public class PlayerController : MonoBehaviour
         {
             return false;
         }
+        if (new_position != Vector3.zero) 
+        {
+            transform.position = (Vector3)new_position;
+        }
         Scene scene = SceneManager.GetActiveScene();
         Debug.Log(scene.name);
         // We poll for a different scene.
@@ -383,8 +387,12 @@ public class PlayerController : MonoBehaviour
             SceneChangeManager.Load(SceneChangeManager.Scene.MainGameScene);
             health = 5;
             _hudMenu.SetHealth(health, maxHealth);
-
-            spawned = false;
+            // Clear the inventory.
+            _inventory.Clear();
+            _hudMenu.clearHotBar();
+            // Respawn at the last visited spawnPoint
+            Debug.Log(visited_spawnPoints);
+            placePlayerAtSpawnPoint(new Vector3(-16.92f, 7.03f, 50.58f));
         }
     }
 

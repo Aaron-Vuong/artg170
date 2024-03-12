@@ -34,4 +34,12 @@ public class Inventory : MonoBehaviour
     {
         return (!items.Contains(null));
     }
+    public void Clear()
+    {
+        for (int i = 0; i < items.Count; i++)
+        {
+            GameObject item = RemoveItem(i);
+            Destroy(item);
+        }
+    }
 }
