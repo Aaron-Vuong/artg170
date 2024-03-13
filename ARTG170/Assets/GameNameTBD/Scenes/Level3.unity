@@ -38079,7 +38079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  _particleSystem: {fileID: 0}
+  _particleSystem: {fileID: 1918342752}
   doorway: {fileID: 1938123591}
   damagedIndicatorTime: 2
   monsterSound: {fileID: 1918342750}

@@ -2363,8 +2363,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d5f2f3a110637f4d910d1d65f9455de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensX: 500
-  sensY: 500
+  sensX: 30
+  sensY: 30
   orientation: {fileID: 311474979}
   gameMenu: 2
 --- !u!1 &842176704
@@ -2762,13 +2762,17 @@ PrefabInstance:
       propertyPath: footsteps.Array.data[5]
       value: 
       objectReference: {fileID: 8300000, guid: 0b678fc186fda4944b2e03b8e635d15b, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 823474853623099351, guid: 55817f51c214c4c4d8a272858c95ad29, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7287016091298284426, guid: 55817f51c214c4c4d8a272858c95ad29, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1908756658}
+    - targetCorrespondingSourceObject: {fileID: 7287016091298284426, guid: 55817f51c214c4c4d8a272858c95ad29, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1908756664}
   m_SourcePrefab: {fileID: 100100000, guid: 55817f51c214c4c4d8a272858c95ad29, type: 3}
 --- !u!1 &947496816
 GameObject:
@@ -5496,6 +5500,24 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!4 &1908756663 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3361892376935068614, guid: 55817f51c214c4c4d8a272858c95ad29, type: 3}
+  m_PrefabInstance: {fileID: 884800555}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1908756664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154781688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c67c7591c5e349f47841b684d94c3dc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraPosition: {fileID: 1908756663}
 --- !u!224 &1911176826 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6653572043910694864, guid: 93b273ce5e32f4c478a9a6f7a47c6506, type: 3}

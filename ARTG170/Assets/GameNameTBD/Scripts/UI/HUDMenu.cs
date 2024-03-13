@@ -10,7 +10,7 @@ using System;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting.FullSerializer;
-using static UnityEditor.Progress;
+
 
 
 public class HUDMenu : MenuManager
@@ -51,7 +51,9 @@ public class HUDMenu : MenuManager
     [SerializeField] private PlayerController _controller;
 
 
-    // https://stackoverflow.com/questions/44101392/more-efficient-way-of-converting-keycode-alphas-to-integers
+    /// <summary>
+    /// https://stackoverflow.com/questions/44101392/more-efficient-way-of-converting-keycode-alphas-to-integers
+    /// </summary>
     private void initializeHotbarKeyCodes()
     {
         /* Register Keycodes to to match each function to call
@@ -134,7 +136,7 @@ public class HUDMenu : MenuManager
         if (_numSlots % 2 == 0) { isEven  = true; }
 
         // This DOES NOT factor rotation! (Hotbar should always be flat/same y.)
-        slotOffset = ((_slotImage.bounds.max.x - _slotImage.bounds.min.x) / _offsetFactor) + _slotSpacing - 150;
+        slotOffset = ((_slotImage.bounds.max.x - _slotImage.bounds.min.x) / _offsetFactor) + _slotSpacing - 100;
         Debug.Log($"Offset of the slot: {slotOffset}");
 
         // Handle tiles on the left + right of origin.
@@ -144,7 +146,7 @@ public class HUDMenu : MenuManager
         for (int slotIdx = -offCenterSlots; slotIdx < rightSlots; slotIdx++)
         {
             //bug happened when I changed everything over to Overlay from Camera so this is my fix for showing TA
-            Vector3 slotPosition = new Vector3((slotOffset * slotIdx) + 900, _hotbarOrigin.transform.position.y, 0);
+            Vector3 slotPosition = new Vector3((slotOffset * slotIdx) + 500, _hotbarOrigin.transform.position.y, 0);
             // Generate a new tile.
             GameObject newSlot = new GameObject();
             newSlot.name = $"Slot {slotIdx + offCenterSlots}";
