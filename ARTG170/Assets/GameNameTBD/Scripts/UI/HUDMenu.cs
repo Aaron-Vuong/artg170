@@ -50,6 +50,7 @@ public class HUDMenu : MenuManager
     private string lastGameSceneName;
     [SerializeField] private PlayerController _controller;
 
+
     // https://stackoverflow.com/questions/44101392/more-efficient-way-of-converting-keycode-alphas-to-integers
     private void initializeHotbarKeyCodes()
     {
@@ -265,6 +266,7 @@ public class HUDMenu : MenuManager
             isFurnitureVisible = false;
         }
     }
+
 
     // TODO: This will reset a player's progress since we reload the scene.
     // We need to additively load the scenes and then choose which is the active.

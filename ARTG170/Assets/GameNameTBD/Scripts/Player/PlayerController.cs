@@ -393,7 +393,8 @@ public class PlayerController : MonoBehaviour
             _hudMenu.clearHotBar();
             // Respawn at the last visited spawnPoint
             Debug.Log(visited_spawnPoints);
-            placePlayerAtSpawnPoint(new Vector3(-16.92f, 7.03f, 50.58f));
+            spawned = false;
+            //placePlayerAtSpawnPoint(new Vector3(-16.92f, 7.03f, 50.58f));
         }
     }
 
