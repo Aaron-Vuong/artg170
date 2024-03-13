@@ -65,7 +65,7 @@ public class BasicFollow : MonoBehaviour
         // TODO: This is a simple modeling change to apply rotation. Hardcoded for snake.
         if (mob_type == MobType.Snake) { transform.RotateAround(transform.position, transform.right, 0); }
         if (mob_type == MobType.Slime) { 
-            transform.RotateAround(transform.position, transform.right, -90);
+            //transform.RotateAround(transform.position, transform.right, -90);
             transform.RotateAround(transform.position, transform.up, 0);
             transform.RotateAround(transform.position, Vector3.up, 90);
 
